@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace StockOptionsHelper.Data
 {
-	internal class DataHelper
+	sealed internal class DataHelper
 	{
 		public static DataHelper Instance = new DataHelper();
-		public static String DATA_FOLDER_NAME = "Data";
-		public Data DataObject { get; set; }
+		public const String DATA_FOLDER_NAME = "Data";
+		public Data data { get; set; }
 
-		public void InitializeData()
+		private DataHelper()
 		{
-			
+			data = new Data();
+			data.AppDataPath = Util.determineAppDataPath();
+
 
 		}
 	}

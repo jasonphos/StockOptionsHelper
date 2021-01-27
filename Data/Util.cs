@@ -24,7 +24,7 @@ namespace StockOptionsHelper.Data
 			foreach (String toCheck in pathsToCheck)
 			{
 				String toCheckDataFolder = System.IO.Path.Combine(toCheck, DataHelper.DATA_FOLDER_NAME);
-				if (System.IO.Directory.Exists(toCheck))
+				if (System.IO.Directory.Exists(toCheckDataFolder))
 					return toCheckDataFolder;
 			}
 
