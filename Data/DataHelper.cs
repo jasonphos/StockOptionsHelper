@@ -25,8 +25,7 @@ namespace StockOptionsHelper.Data
 		public List<String> GetExpirationDates(String symbol)
 		{
 			StockSymbol sym = getSymbol(symbol);
-			sym.
-
+			return sym.ExpirationDates;
 		}
 
 		private StockSymbol getSymbol(String symbol)
