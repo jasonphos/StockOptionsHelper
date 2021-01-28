@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace StockOptionsHelper.Data
 {
-	static class Util
+	static class DataUtil
 	{
 		public static String determineAppDataPath()
 		{

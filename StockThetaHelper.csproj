@@ -48,7 +48,8 @@
   <ItemGroup>
     <Compile Include="Data\Data.cs" />
     <Compile Include="Data\DataHelper.cs" />
-    <Compile Include="Data\Util.cs" />
+    <Compile Include="Data\StockSymbol.cs" />
+    <Compile Include="Data\DataUtil.cs" />
     <Compile Include="ThetaReturnCalculator.cs">
       <SubType>Form</SubType>
     </Compile>
