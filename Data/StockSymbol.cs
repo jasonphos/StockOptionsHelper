@@ -14,11 +14,12 @@ namespace StockOptionsHelper.Data
 		private List<String> expirationDates;
 		public List<String> ExpirationDates {
 			get {
-				if (expirationDates != null && isCacheValid)
+				if (expirationDates != null && isCacheValid("ExpirationDates"))
 					return expirationDates;
 				else
 				{
 					expirationDates = DataUtil.determineExpirationDates(this);
+					return expirationDates;
 				}
 			} set
 			{
