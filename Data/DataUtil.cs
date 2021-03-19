@@ -49,20 +49,25 @@ namespace StockOptionsHelper.Data
 			DateTime nextMonthly  = 
 			if (cycle.CycleMonth == CycleMonths.)
 		}
-		private static DateTime getWeeklyExpirationDate(int weeksOut) {
+		private static void addWeeklyExpirationDate(List<string> listExpDates) {
 			DateTime today = DateTime.Today;
 			// The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
 			int daysUntilFriday = ((int)DayOfWeek.Friday - (int)today.DayOfWeek + 7) % 7;
 			DateTime nextFriday = today.AddDays(daysUntilFriday);
 			DateTime targetWeek = nextFriday.AddDays(7 * weeksOut);
-			return targetWeek;
+			return targetWeek;  
 		}
 
-		private static DateTime getMonthlyExpirationDate(int monthsOut) {
+		private static void addMonthlyExpirationDates(List<string> listExpDates) {
 			//Monthly Options always expire the 3rd Friday of the month, unless Friday is a holiday. 
 			//Todo: Code a holiday exception.
 			DateTime today = DateTime.Today;
-			currentMonthMonthly = FindDay(today.Year, today.Month, DayOfWeek.Friday) 
+
+			
+			DateTime targetMonth = today.AddMonths(monthsOut);
+			DateTime targetMonthMonthlyExp = FindDayReturnDate(today, DayOfWeek.Friday, 3); 
+			if (today <= targetMonthMonthlyExp) //Todo: Could consider a time factor in the future, i.e. if we wanted to cutoff displaying today as an expiration after a certain time. Could make it a configuration item when we code this feature.
+				return 
 		}
 
 		//For example to find the day for 2nd Friday, February, 2016
@@ -84,6 +89,15 @@ namespace StockOptionsHelper.Data
 				throw new Exception(String.Format("No {0} occurance(s) of {1} in the required month", occurance, Day.ToString()));
 
 			return resultedDay;
+		}
+
+		public static DateTime FindDayReturnDate(int year, int month, DayOfWeek Day, int occurance) {
+			int dayOfMonth = FindDay(year, month, Day, occurance);
+			return new DateTime(year, month, dayOfMonth)
+		}
+
+		public static DateTime FindDayReturnDate(DateTime currentDate, DayOfWeek Day, int occurance) {
+			return FindDayReturnDate(currentDate.Year, currentDate.Month, Day, occurance);
 		}
 	}
 }
