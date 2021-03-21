@@ -43,31 +43,47 @@ namespace StockOptionsHelper.Data
 			return ""; //Should only reach here if an error ocurred.
 		}
 
-		internal static List<string> determineExpirationDates(StockSymbol stockSymbol) {
-			List<string> listExpDates = new List<string>();
+		internal static List<DateTime> determineExpirationDates(StockSymbol stockSymbol) {
+			HashSet<DateTime> listExpDates = new HashSet<DateTime>();
 			OptionCycle cycle = stockSymbol.Cycle;
-			DateTime nextMonthly  = 
-			if (cycle.CycleMonth == CycleMonths.)
+			if (stockSymbol.Cycle.HasWeeklies)
+				addWeeklyExpirationDates(listExpDates);
+			if (stockSymbol.Cycle.HasLeaps)
+				addLeapExpirationDates(listExpDates);
+			addMonthlyExpirationDates(listExpDates);
+
+			return listExpDates.ToList<DateTime>();
+
+
 		}
-		private static void addWeeklyExpirationDate(List<string> listExpDates) {
+		private static void addWeeklyExpirationDates(HashSet<DateTime> listExpDates) {
+			//Weekly options expire every Friday, unless Friday is a holiday then they expire on Thursday.
+			//Todo: Code a holiday exception
+			int NUMBER_OF_WEEKLIES = 6; //Technically, weeklies skip Monthlies. However, for this purpose we don't care about that since we are only cocerned with the dates themselves!.
 			DateTime today = DateTime.Today;
 			// The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
 			int daysUntilFriday = ((int)DayOfWeek.Friday - (int)today.DayOfWeek + 7) % 7;
 			DateTime nextFriday = today.AddDays(daysUntilFriday);
-			DateTime targetWeek = nextFriday.AddDays(7 * weeksOut);
-			return targetWeek;  
+			for (int i = 0; i < NUMBER_OF_WEEKLIES; i++) {
+				listExpDates.Add(nextFriday.AddDays(7 * i));
+			} 
 		}
 
-		private static void addMonthlyExpirationDates(List<string> listExpDates) {
-			//Monthly Options always expire the 3rd Friday of the month, unless Friday is a holiday. 
+		private static void addMonthlyExpirationDates(HashSet<DateTime> listExpDates) {
+			int MONTHLY_OCCURANCE_WEEK = 3;
+			//Monthly Options always expire the 3rd Friday of the month, unless Friday is a holiday then they expire on Thursday. 
 			//Todo: Code a holiday exception.
 			DateTime today = DateTime.Today;
 
-			
-			DateTime targetMonth = today.AddMonths(monthsOut);
-			DateTime targetMonthMonthlyExp = FindDayReturnDate(today, DayOfWeek.Friday, 3); 
-			if (today <= targetMonthMonthlyExp) //Todo: Could consider a time factor in the future, i.e. if we wanted to cutoff displaying today as an expiration after a certain time. Could make it a configuration item when we code this feature.
-				return 
+			DateTime targetMonthMonthlyExp = FindDayReturnDate(today, DayOfWeek.Friday, MONTHLY_OCCURANCE_WEEK);
+			DateTime firstMonthly;
+			if (today <= targetMonthMonthlyExp) { //Todo: Could consider a time factor in the future, i.e. if we wanted to cutoff displaying today as an expiration after a certain time. Could make it a configuration item when we code this feature.
+				firstMonthly = targetMonthMonthlyExp;
+			} else {
+				firstMonthly = FindDayReturnDate(today.AddMonths(1), DayOfWeek.Friday, MONTHLY_OCCURANCE_WEEK);
+			}
+			if (!listExpDates.Contains(firstMonthly))
+				listExpDates.Add(firstMonthly);
 		}
 
 		//For example to find the day for 2nd Friday, February, 2016
