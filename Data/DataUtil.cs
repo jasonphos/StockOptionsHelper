@@ -43,33 +43,46 @@ namespace StockOptionsHelper.Data
 			return ""; //Should only reach here if an error ocurred.
 		}
 
-		internal static List<DateTime> determineExpirationDates(StockSymbol stockSymbol) {
-			HashSet<DateTime> listExpDates = new HashSet<DateTime>();
-			OptionCycle cycle = stockSymbol.Cycle;
-			if (stockSymbol.Cycle.HasWeeklies)
-				addWeeklyExpirationDates(listExpDates);
-			if (stockSymbol.Cycle.HasLeaps)
-				addLeapExpirationDates(listExpDates);
-			addMonthlyExpirationDates(listExpDates);
-
-			return listExpDates.ToList<DateTime>();
-
-
-		}
-		private static void addWeeklyExpirationDates(HashSet<DateTime> listExpDates) {
+		public static void addWeeklyExpirationDates(HashSet<DateTime> listExpDates) {
 			//Weekly options expire every Friday, unless Friday is a holiday then they expire on Thursday.
-			//Todo: Code a holiday exception
+			//Todo: Code a holiday exception!
 			int NUMBER_OF_WEEKLIES = 6; //Technically, weeklies skip Monthlies. However, for this purpose we don't care about that since we are only cocerned with the dates themselves!.
+			int DaysAheadToAddNextSeries = 1; //On Thursdays, we add new weeklies. We could hardcode Thursday, but holidays would mess it up. Instead, we'll use number of days to determine it.
 			DateTime today = DateTime.Today;
+			
 			// The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
 			int daysUntilFriday = ((int)DayOfWeek.Friday - (int)today.DayOfWeek + 7) % 7;
 			DateTime nextFriday = today.AddDays(daysUntilFriday);
+
 			for (int i = 0; i < NUMBER_OF_WEEKLIES; i++) {
-				listExpDates.Add(nextFriday.AddDays(7 * i));
+				DateTime nextWeeklyToAdd = nextFriday.AddDays(7 * i);
+				nextWeeklyToAdd = DetermineExpDateIfHoliday(nextWeeklyToAdd);
+				if (i == 0 && (nextWeeklyToAdd - today).TotalDays <= DaysAheadToAddNextSeries)
+					NUMBER_OF_WEEKLIES++; //If It's the day before expiration (i.e. Thur or Friday in a non holiday week), then the next weekly is available so add one more week to the number
+				listExpDates.Add(nextWeeklyToAdd);
 			} 
 		}
 
-		private static void addMonthlyExpirationDates(HashSet<DateTime> listExpDates) {
+		private static DateTime DetermineExpDateIfHoliday(DateTime targetExpirationDate) {
+			bool isHday = false;
+
+			do {
+				if (isHoliday(targetExpirationDate)) {
+					isHday = true;
+					targetExpirationDate = targetExpirationDate.AddDays(-1);
+				} else {
+					isHday = false;
+				}
+			} while (isHday == true);
+			return targetExpirationDate;
+
+		}
+
+		private static bool isHoliday(DateTime dateToCheck) {
+			return false; //TODO: Code a feature that tracks holidays and implement it in this function!
+		}
+
+		public static void addMonthlyExpirationDates(HashSet<DateTime> listExpDates) {
 			int MONTHLY_OCCURANCE_WEEK = 3;
 			//Monthly Options always expire the 3rd Friday of the month, unless Friday is a holiday then they expire on Thursday. 
 			//Todo: Code a holiday exception.

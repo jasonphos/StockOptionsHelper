@@ -18,7 +18,7 @@ namespace StockOptionsHelper.Data
 					return expirationDates;
 				else
 				{
-					expirationDates = DataUtil.determineExpirationDates(this);
+					expirationDates = determineExpirationDates(this);
 					return expirationDates;
 				}
 			} set
@@ -33,6 +33,35 @@ namespace StockOptionsHelper.Data
 			CacheExpiration = new Dictionary<string, DateTime>();
 		}
 
+		public List<DateTime> determineExpirationDates() {
+			HashSet<DateTime> listExpDates = new HashSet<DateTime>();
+
+			if (Cycle.HasWeeklies)
+				DataUtil.addWeeklyExpirationDates(listExpDates);
+			if (Cycle.HasLeaps)
+				DataUtil.addLeapExpirationDates(listExpDates);
+			DataUtil.addMonthlyExpirationDates(listExpDates);
+
+			List<DateTime> toReturn;
+			toReturn = listExpDates.ToList();
+			toReturn.Sort();
+			return listExpDates.ToList<DateTime>();
+		}
+		public List<string> determineExpirationDatesFormatted() {
+			List<DateTime> listExpDates = determineExpirationDates();
+			DateTime today = DateTime.Today;
+			List<string> toReturn = new List<string>();
+
+			foreach (DateTime theDate in listExpDates) {
+				String format;
+				if ((theDate.Year > today.Year)) //If not current year, then stick the year on it. Could change formatting in future of course, move it elsewhere...
+					format = "MMM DD, YYYY";
+				else
+					format = "MMM DD";
+
+				toReturn.Add(theDate.ToString(format))
+			}
+		}
 
 	}
 }
