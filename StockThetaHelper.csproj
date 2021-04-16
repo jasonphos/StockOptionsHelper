@@ -52,15 +52,15 @@
     <Compile Include="Data\OptionCycle.cs" />
     <Compile Include="Data\StockSymbol.cs" />
     <Compile Include="Data\DataUtil.cs" />
-    <Compile Include="ThetaReturnCalculator.cs">
+    <Compile Include="GUI\ThetaReturnCalculator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ThetaReturnCalculator.Designer.cs">
+    <Compile Include="GUI\ThetaReturnCalculator.Designer.cs">
       <DependentUpon>ThetaReturnCalculator.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ThetaReturnCalculator.resx">
+    <EmbeddedResource Include="GUI\ThetaReturnCalculator.resx">
       <DependentUpon>ThetaReturnCalculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -18,9 +18,21 @@ namespace StockOptionsHelper
 		{
 			DH = DataHelper.Instance;
 			InitializeComponent();
+			//this.MaximumSize = new System.Drawing.Size(3500, 2500);
 
+			//this.Size = new Size(1630, 800);
+			//System.Windows.Forms.MessageBox.Show(this.Size.ToString());
+
+			SetDefaults();
 		}
 
+		private void SetDefaults() {
+			//Defaults should set it equal to the previous setting
+
+		}
+		private void SaveScreen() {
+			//This will Save the record as a history, if there
+		}
 		private void button1_Click(object sender, EventArgs e)
 		{
 
