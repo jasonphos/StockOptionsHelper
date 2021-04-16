@@ -10,15 +10,17 @@ namespace StockOptionsHelper.Data
 	{
 		public readonly String Symbol;
 		public OptionCycle Cycle;
+		private ApplicationCacheTracker cacheTracker = ApplicationCacheTracker.Instance;
 		public String CompanyName { get; set; }
 		private List<String> expirationDates;
 		public List<String> ExpirationDates {
 			get {
-				if (expirationDates != null && isCacheValid("ExpirationDates"))
+				if (expirationDates != null && cacheTracker.isValid("ExpirationDates"))
 					return expirationDates;
 				else
 				{
-					expirationDates = determineExpirationDates(this);
+					expirationDates = determineExpirationDatesFormatted();
+					cacheTracker.resetCache("ExpirationDates");
 					return expirationDates;
 				}
 			} set
@@ -33,13 +35,12 @@ namespace StockOptionsHelper.Data
 			CacheExpiration = new Dictionary<string, DateTime>();
 		}
 
-		public List<DateTime> determineExpirationDates() {
+		private List<DateTime> determineExpirationDates() {
 			HashSet<DateTime> listExpDates = new HashSet<DateTime>();
 
 			if (Cycle.HasWeeklies)
 				DataUtil.addWeeklyExpirationDates(listExpDates);
-			if (Cycle.HasLeaps)
-				DataUtil.addLeapExpirationDates(listExpDates);
+			DataUtil.addLeapExpirationDates(listExpDates, Cycle.CycleLeap);
 			DataUtil.addMonthlyExpirationDates(listExpDates);
 
 			List<DateTime> toReturn;
@@ -47,7 +48,7 @@ namespace StockOptionsHelper.Data
 			toReturn.Sort();
 			return listExpDates.ToList<DateTime>();
 		}
-		public List<string> determineExpirationDatesFormatted() {
+		private List<string> determineExpirationDatesFormatted() {
 			List<DateTime> listExpDates = determineExpirationDates();
 			DateTime today = DateTime.Today;
 			List<string> toReturn = new List<string>();
@@ -59,8 +60,9 @@ namespace StockOptionsHelper.Data
 				else
 					format = "MMM DD";
 
-				toReturn.Add(theDate.ToString(format))
+				toReturn.Add(theDate.ToString(format));
 			}
+			return toReturn;
 		}
 
 	}

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ApplicationCacheTracker.cs" />
     <Compile Include="Data\Data.cs" />
     <Compile Include="Data\DataHelper.cs" />
     <Compile Include="Data\OptionCycle.cs" />

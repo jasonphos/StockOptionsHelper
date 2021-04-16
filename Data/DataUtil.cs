@@ -26,12 +26,13 @@ namespace StockOptionsHelper.Data
 			}
 
 			String pathToCreate = "";
-			DialogResult result = MessageBox.Show("Data Directory does not exist. Would you like to create this directory in the same folder as the Program? Yes to do so, or No to create it in AppData", "Data Directory not found", MessageBoxButtons.YesNoCancel);
+			DialogResult result = MessageBox.Show("Data Directory does not exist. Would you like to create this directory in the same folder as the Program? Click 'Yes' to create in same folder, or click 'No' to create it in AppData", "Data Directory not found", MessageBoxButtons.YesNoCancel);
 			if (result == DialogResult.Yes)
 				pathToCreate = exePath;
 			else if (result == DialogResult.No)
 				pathToCreate = appDataPath;
-			
+
+			pathToCreate = System.IO.Path.Combine(pathToCreate, DataHelper.DATA_FOLDER_NAME);
 			if (!String.IsNullOrEmpty(pathToCreate)) {
 				try {
 					System.IO.Directory.CreateDirectory(pathToCreate);
@@ -41,6 +42,13 @@ namespace StockOptionsHelper.Data
 				}
 			}
 			return ""; //Should only reach here if an error ocurred.
+		}
+
+		internal static void addLeapExpirationDates(HashSet<DateTime> listExpDates, OptionCycle.CycleLeaps cycle) {
+			if (cycle != OptionCycle.CycleLeaps.None) {
+				int yearsToAdd = 3;
+
+			}
 		}
 
 		public static void addWeeklyExpirationDates(HashSet<DateTime> listExpDates) {
@@ -122,7 +130,7 @@ namespace StockOptionsHelper.Data
 
 		public static DateTime FindDayReturnDate(int year, int month, DayOfWeek Day, int occurance) {
 			int dayOfMonth = FindDay(year, month, Day, occurance);
-			return new DateTime(year, month, dayOfMonth)
+			return new DateTime(year, month, dayOfMonth);
 		}
 
 		public static DateTime FindDayReturnDate(DateTime currentDate, DayOfWeek Day, int occurance) {
