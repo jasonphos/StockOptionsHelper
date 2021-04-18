@@ -88,6 +88,7 @@ namespace StockOptionsHelper
 			this.btnCSPToggleDefault.Text = "Cash Secured Put";
 			this.btnCSPToggleDefault.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.btnCSPToggleDefault.UseVisualStyleBackColor = true;
+			this.btnCSPToggleDefault.Click += new System.EventHandler(this.btnCSPToggle_Click_Handler);
 			// 
 			// btnCCToggleDefault
 			// 
@@ -101,7 +102,7 @@ namespace StockOptionsHelper
 			this.btnCCToggleDefault.Text = "Covered Call";
 			this.btnCCToggleDefault.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.btnCCToggleDefault.UseVisualStyleBackColor = true;
-			this.btnCCToggleDefault.Click += new System.EventHandler(this.button1_Click);
+			this.btnCCToggleDefault.Click += new System.EventHandler(this.btnCCToggle_Click_Handler);
 			// 
 			// txtQuantity001
 			// 
@@ -213,6 +214,7 @@ namespace StockOptionsHelper
 			this.btnCSPToggle001.Text = "C.S. Put";
 			this.btnCSPToggle001.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.btnCSPToggle001.UseVisualStyleBackColor = true;
+			this.btnCSPToggle001.Click += new System.EventHandler(this.btnCSPToggle_Click_Handler);
 			// 
 			// btnCCToggle001
 			// 
@@ -226,6 +228,7 @@ namespace StockOptionsHelper
 			this.btnCCToggle001.Text = "C. Call";
 			this.btnCCToggle001.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.btnCCToggle001.UseVisualStyleBackColor = true;
+			this.btnCCToggle001.Click += new System.EventHandler(this.btnCCToggle_Click_Handler);
 			// 
 			// label5
 			// 
@@ -391,7 +394,6 @@ namespace StockOptionsHelper
 			this.label10.Size = new System.Drawing.Size(205, 120);
 			this.label10.TabIndex = 19;
 			this.label10.Text = "Invested Amount";
-			this.label10.Click += new System.EventHandler(this.label10_Click);
 			// 
 			// txtInvAmt001
 			// 
@@ -442,7 +444,7 @@ namespace StockOptionsHelper
 			this.label14.Size = new System.Drawing.Size(232, 64);
 			this.label14.TabIndex = 24;
 			this.label14.Text = "Percent";
-			this.label14.Click += new System.EventHandler(this.label14_Click);
+
 			// 
 			// txtExpProfitPerc001
 			// 
@@ -453,7 +455,7 @@ namespace StockOptionsHelper
 			this.txtExpProfitPerc001.Name = "txtExpProfitPerc001";
 			this.txtExpProfitPerc001.Size = new System.Drawing.Size(153, 56);
 			this.txtExpProfitPerc001.TabIndex = 23;
-			this.txtExpProfitPerc001.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+
 			// 
 			// label15
 			// 
