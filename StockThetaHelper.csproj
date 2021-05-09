@@ -47,8 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="3rdParty\ControlFactory.cs" />
+    <Compile Include="Controllers\FormController.cs" />
+    <Compile Include="Controllers\ThetaReturnCalculator.cs" />
     <Compile Include="Data\ApplicationCacheTracker.cs" />
-    <Compile Include="Data\Data.cs" />
+    <Compile Include="Data\DataForm.cs" />
+    <Compile Include="Data\DataStock.cs" />
     <Compile Include="Data\DataHelper.cs" />
     <Compile Include="Data\OptionCycle.cs" />
     <Compile Include="Data\StockSymbol.cs" />

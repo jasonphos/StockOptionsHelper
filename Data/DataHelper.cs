@@ -12,11 +12,11 @@ namespace StockOptionsHelper.Data
 		public static DataHelper Instance = new DataHelper();
 		public const String DATA_FOLDER_NAME = "Data";
 		
-		protected Data data { get; set; } //Could change this in the future if we want to allow switching out data, but for now this is the simple play to make it private.
+		protected DataStock data { get; set; } //Could change this in the future if we want to allow switching out data, but for now this is the simple play to make it private.
 
 		private DataHelper()
 		{
-			data = new Data();
+			data = new DataStock();
 			data.AppDataPath = DataUtil.determineAppDataPath();
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StockOptionsHelper.Data
 {
-	internal class Data
+	internal class DataStock
 	{
 		public String AppDataPath { get; set; }
 		private Dictionary<String, StockSymbol> Symbols;

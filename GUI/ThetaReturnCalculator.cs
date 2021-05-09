@@ -1,4 +1,5 @@
-﻿using StockOptionsHelper.Data;
+﻿using StockOptionsHelper.Controllers;
+using StockOptionsHelper.Data;
 using StockOptionsHelper.ThirdParty;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace StockOptionsHelper
 	public partial class ThetaReturnCalculator : Form
 	{
 		private DataHelper DH;
+		private FormController formController = new FormController();
 		public ThetaReturnCalculator()
 		{
 			DH = DataHelper.Instance;
@@ -24,6 +26,10 @@ namespace StockOptionsHelper
 		}
 		private static readonly string CSP_PREFIX = "btnCSPToggle";
 		private static readonly string CC_PREFIX = "btnCCToggle";
+		private static readonly string SHARE_PRICE_PREFIX = "txtSharePrice";
+		private static readonly string EXP_DATE_PREFIX = "cmboExpDate";
+		private static readonly string STRIKE_PRICE_PREFIX = "txtStrike001";
+		private static readonly string CONTRACT_QUANTITY_PREFIX = "txtQuantity001";
 
 		private void SetDefaults() {
 			//Defaults should set it equal to the previous setting
@@ -84,8 +90,11 @@ namespace StockOptionsHelper
 					CheckBox cspButton = (CheckBox)control;
 					cspButton.Click += new System.EventHandler(this.btnCSPToggle_Click_Handler);
 				} else if (control.Name.StartsWith(CC_PREFIX)) {
-					CheckBox cspButton = (CheckBox)control;
-					cspButton.Click += new System.EventHandler(this.btnCCToggle_Click_Handler);
+					CheckBox ccButton = (CheckBox)control;
+					ccButton.Click += new System.EventHandler(this.btnCCToggle_Click_Handler);
+				} else if (control.Name.StartsWith(SHARE_PRICE_PREFIX) || control.Name.StartsWith(EXP_DATE_PREFIX) || control.Name.StartsWith(STRIKE_PRICE_PREFIX) || control.Name.StartsWith(CONTRACT_QUANTITY_PREFIX)) {
+					TextBox field = (TextBox)control;
+					field.TextChanged += new EventHandler(this.handleTextBoxChanged);
 				}
 
 
@@ -123,6 +132,11 @@ namespace StockOptionsHelper
 			} else {
 				btnOther.Checked = true;
 			}
+		}
+
+		private void handleTextBoxChanged(object sender, EventArgs e) {
+			//If all of the fields needed to do the calculation are filled out, then do it and display the results!
+
 		}
 
 	}
