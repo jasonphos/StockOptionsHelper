@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="3rdParty\ControlFactory.cs" />
     <Compile Include="Controllers\FormController.cs" />
-    <Compile Include="Controllers\ThetaReturnCalculator.cs" />
+    <Compile Include="Controllers\ThetaReturnCalculatorController.cs" />
     <Compile Include="Data\ApplicationCacheTracker.cs" />
     <Compile Include="Data\DataForm.cs" />
     <Compile Include="Data\DataStock.cs" />

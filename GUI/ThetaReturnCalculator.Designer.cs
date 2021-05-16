@@ -53,6 +53,7 @@ namespace StockOptionsHelper
 			this.label7 = new System.Windows.Forms.Label();
 			this.txtSymbolDefault = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.label21 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
@@ -72,6 +73,12 @@ namespace StockOptionsHelper
 			this.button1 = new System.Windows.Forms.Button();
 			this.btnSave = new System.Windows.Forms.Button();
 			this.btnHistory = new System.Windows.Forms.Button();
+			this.label22 = new System.Windows.Forms.Label();
+			this.txtContractPrice001 = new System.Windows.Forms.TextBox();
+			this.label23 = new System.Windows.Forms.Label();
+			this.txtExpProfitPercAPR001 = new System.Windows.Forms.TextBox();
+			this.label24 = new System.Windows.Forms.Label();
+			this.txtMaxProfitPercAPR001 = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -81,7 +88,7 @@ namespace StockOptionsHelper
 			this.btnCSPToggleDefault.Appearance = System.Windows.Forms.Appearance.Button;
 			this.btnCSPToggleDefault.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnCSPToggleDefault.Location = new System.Drawing.Point(22, 131);
-			this.btnCSPToggleDefault.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btnCSPToggleDefault.Margin = new System.Windows.Forms.Padding(4);
 			this.btnCSPToggleDefault.Name = "btnCSPToggleDefault";
 			this.btnCSPToggleDefault.Size = new System.Drawing.Size(208, 58);
 			this.btnCSPToggleDefault.TabIndex = 3;
@@ -95,7 +102,7 @@ namespace StockOptionsHelper
 			this.btnCCToggleDefault.Appearance = System.Windows.Forms.Appearance.Button;
 			this.btnCCToggleDefault.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnCCToggleDefault.Location = new System.Drawing.Point(246, 131);
-			this.btnCCToggleDefault.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btnCCToggleDefault.Margin = new System.Windows.Forms.Padding(4);
 			this.btnCCToggleDefault.Name = "btnCCToggleDefault";
 			this.btnCCToggleDefault.Size = new System.Drawing.Size(209, 58);
 			this.btnCCToggleDefault.TabIndex = 4;
@@ -107,8 +114,8 @@ namespace StockOptionsHelper
 			// txtQuantity001
 			// 
 			this.txtQuantity001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtQuantity001.Location = new System.Drawing.Point(774, 331);
-			this.txtQuantity001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtQuantity001.Location = new System.Drawing.Point(645, 331);
+			this.txtQuantity001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtQuantity001.Name = "txtQuantity001";
 			this.txtQuantity001.Size = new System.Drawing.Size(66, 32);
 			this.txtQuantity001.TabIndex = 7;
@@ -116,20 +123,20 @@ namespace StockOptionsHelper
 			// label1
 			// 
 			this.label1.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(768, 290);
+			this.label1.Location = new System.Drawing.Point(640, 290);
 			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(116, 33);
+			this.label1.Size = new System.Drawing.Size(90, 33);
 			this.label1.TabIndex = 30;
 			this.label1.Text = "Quantity";
 			// 
 			// label2
 			// 
 			this.label2.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(480, 290);
+			this.label2.Location = new System.Drawing.Point(404, 290);
 			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(188, 30);
+			this.label2.Size = new System.Drawing.Size(152, 30);
 			this.label2.TabIndex = 30;
 			this.label2.Text = "Expiration Date";
 			// 
@@ -138,17 +145,17 @@ namespace StockOptionsHelper
 			this.cmboExpDate001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmboExpDate001.FormattingEnabled = true;
 			this.cmboExpDate001.ItemHeight = 25;
-			this.cmboExpDate001.Location = new System.Drawing.Point(486, 330);
-			this.cmboExpDate001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.cmboExpDate001.Location = new System.Drawing.Point(410, 330);
+			this.cmboExpDate001.Margin = new System.Windows.Forms.Padding(4);
 			this.cmboExpDate001.Name = "cmboExpDate001";
-			this.cmboExpDate001.Size = new System.Drawing.Size(196, 33);
+			this.cmboExpDate001.Size = new System.Drawing.Size(136, 33);
 			this.cmboExpDate001.TabIndex = 5;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(106, 290);
+			this.label3.Location = new System.Drawing.Point(87, 290);
 			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(112, 25);
@@ -158,8 +165,8 @@ namespace StockOptionsHelper
 			// txtSharePrice001
 			// 
 			this.txtSharePrice001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtSharePrice001.Location = new System.Drawing.Point(110, 332);
-			this.txtSharePrice001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtSharePrice001.Location = new System.Drawing.Point(91, 332);
+			this.txtSharePrice001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtSharePrice001.Name = "txtSharePrice001";
 			this.txtSharePrice001.Size = new System.Drawing.Size(119, 32);
 			this.txtSharePrice001.TabIndex = 2;
@@ -167,7 +174,7 @@ namespace StockOptionsHelper
 			// label4
 			// 
 			this.label4.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(688, 290);
+			this.label4.Location = new System.Drawing.Point(562, 290);
 			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(81, 33);
@@ -177,8 +184,8 @@ namespace StockOptionsHelper
 			// txtStrike001
 			// 
 			this.txtStrike001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtStrike001.Location = new System.Drawing.Point(693, 332);
-			this.txtStrike001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtStrike001.Location = new System.Drawing.Point(567, 332);
+			this.txtStrike001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtStrike001.Name = "txtStrike001";
 			this.txtStrike001.Size = new System.Drawing.Size(66, 32);
 			this.txtStrike001.TabIndex = 6;
@@ -187,7 +194,7 @@ namespace StockOptionsHelper
 			// 
 			this.lblSymbol001.AutoSize = true;
 			this.lblSymbol001.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblSymbol001.Location = new System.Drawing.Point(10, 290);
+			this.lblSymbol001.Location = new System.Drawing.Point(4, 290);
 			this.lblSymbol001.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.lblSymbol001.Name = "lblSymbol001";
 			this.lblSymbol001.Size = new System.Drawing.Size(79, 25);
@@ -197,8 +204,8 @@ namespace StockOptionsHelper
 			// txtSymbol001
 			// 
 			this.txtSymbol001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtSymbol001.Location = new System.Drawing.Point(15, 332);
-			this.txtSymbol001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtSymbol001.Location = new System.Drawing.Point(9, 332);
+			this.txtSymbol001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtSymbol001.Name = "txtSymbol001";
 			this.txtSymbol001.Size = new System.Drawing.Size(77, 32);
 			this.txtSymbol001.TabIndex = 1;
@@ -207,10 +214,10 @@ namespace StockOptionsHelper
 			// 
 			this.btnCSPToggle001.Appearance = System.Windows.Forms.Appearance.Button;
 			this.btnCSPToggle001.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnCSPToggle001.Location = new System.Drawing.Point(240, 331);
-			this.btnCSPToggle001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btnCSPToggle001.Location = new System.Drawing.Point(219, 331);
+			this.btnCSPToggle001.Margin = new System.Windows.Forms.Padding(4);
 			this.btnCSPToggle001.Name = "btnCSPToggle001";
-			this.btnCSPToggle001.Size = new System.Drawing.Size(107, 33);
+			this.btnCSPToggle001.Size = new System.Drawing.Size(94, 33);
 			this.btnCSPToggle001.TabIndex = 3;
 			this.btnCSPToggle001.Text = "C.S. Put";
 			this.btnCSPToggle001.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -221,10 +228,10 @@ namespace StockOptionsHelper
 			// 
 			this.btnCCToggle001.Appearance = System.Windows.Forms.Appearance.Button;
 			this.btnCCToggle001.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnCCToggle001.Location = new System.Drawing.Point(363, 332);
-			this.btnCCToggle001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btnCCToggle001.Location = new System.Drawing.Point(321, 332);
+			this.btnCCToggle001.Margin = new System.Windows.Forms.Padding(4);
 			this.btnCCToggle001.Name = "btnCCToggle001";
-			this.btnCCToggle001.Size = new System.Drawing.Size(108, 33);
+			this.btnCCToggle001.Size = new System.Drawing.Size(82, 33);
 			this.btnCCToggle001.TabIndex = 4;
 			this.btnCCToggle001.Text = "C. Call";
 			this.btnCCToggle001.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -235,7 +242,7 @@ namespace StockOptionsHelper
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.Location = new System.Drawing.Point(235, 290);
+			this.label5.Location = new System.Drawing.Point(214, 290);
 			this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(84, 25);
@@ -255,9 +262,9 @@ namespace StockOptionsHelper
 			this.groupBox1.Controls.Add(this.btnCCToggleDefault);
 			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox1.Location = new System.Drawing.Point(15, 7);
-			this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
 			this.groupBox1.Size = new System.Drawing.Size(474, 211);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
@@ -278,7 +285,7 @@ namespace StockOptionsHelper
 			// 
 			this.txtRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtRows.Location = new System.Drawing.Point(22, 59);
-			this.txtRows.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtRows.Margin = new System.Windows.Forms.Padding(4);
 			this.txtRows.Name = "txtRows";
 			this.txtRows.Size = new System.Drawing.Size(81, 28);
 			this.txtRows.TabIndex = 0;
@@ -302,7 +309,7 @@ namespace StockOptionsHelper
 			this.cmboExpDateDefault.FormattingEnabled = true;
 			this.cmboExpDateDefault.ItemHeight = 25;
 			this.cmboExpDateDefault.Location = new System.Drawing.Point(260, 48);
-			this.cmboExpDateDefault.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.cmboExpDateDefault.Margin = new System.Windows.Forms.Padding(4);
 			this.cmboExpDateDefault.Name = "cmboExpDateDefault";
 			this.cmboExpDateDefault.Size = new System.Drawing.Size(196, 33);
 			this.cmboExpDateDefault.TabIndex = 2;
@@ -332,26 +339,39 @@ namespace StockOptionsHelper
 			// 
 			this.txtSymbolDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtSymbolDefault.Location = new System.Drawing.Point(150, 50);
-			this.txtSymbolDefault.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtSymbolDefault.Margin = new System.Windows.Forms.Padding(4);
 			this.txtSymbolDefault.Name = "txtSymbolDefault";
 			this.txtSymbolDefault.Size = new System.Drawing.Size(81, 32);
 			this.txtSymbolDefault.TabIndex = 1;
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Controls.Add(this.label21);
 			this.groupBox2.Controls.Add(this.label20);
 			this.groupBox2.Controls.Add(this.label18);
 			this.groupBox2.Controls.Add(this.label12);
 			this.groupBox2.Controls.Add(this.label9);
 			this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.groupBox2.Location = new System.Drawing.Point(504, 16);
-			this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-			this.groupBox2.Size = new System.Drawing.Size(1092, 202);
+			this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+			this.groupBox2.Size = new System.Drawing.Size(1092, 242);
 			this.groupBox2.TabIndex = 17;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Definitions";
+			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label21.Location = new System.Drawing.Point(11, 196);
+			this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(781, 21);
+			this.label21.TabIndex = 24;
+			this.label21.Text = "Contract Price - The amount per contract per share, so normal pricing (i.e. $1 fo" +
+    "r a call that costs $100)";
 			// 
 			// label20
 			// 
@@ -360,10 +380,10 @@ namespace StockOptionsHelper
 			this.label20.Location = new System.Drawing.Point(11, 158);
 			this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(658, 21);
+			this.label20.Size = new System.Drawing.Size(792, 21);
 			this.label20.TabIndex = 23;
-			this.label20.Text = "Save - Not Yet Implemented. Will Save current screen so it can be viewed from his" +
-    "tory.";
+			this.label20.Text = "Save and View History - Not Yet Implemented. Will Save current screen so it can b" +
+    "e viewed from history.";
 			// 
 			// label18
 			// 
@@ -403,10 +423,10 @@ namespace StockOptionsHelper
 			// label10
 			// 
 			this.label10.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.Location = new System.Drawing.Point(890, 260);
+			this.label10.Location = new System.Drawing.Point(833, 264);
 			this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(102, 62);
+			this.label10.Size = new System.Drawing.Size(102, 55);
 			this.label10.TabIndex = 30;
 			this.label10.Text = "Invested Amount";
 			// 
@@ -414,19 +434,19 @@ namespace StockOptionsHelper
 			// 
 			this.txtInvAmt001.BackColor = System.Drawing.SystemColors.Info;
 			this.txtInvAmt001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtInvAmt001.Location = new System.Drawing.Point(895, 331);
-			this.txtInvAmt001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtInvAmt001.Location = new System.Drawing.Point(834, 331);
+			this.txtInvAmt001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtInvAmt001.Name = "txtInvAmt001";
 			this.txtInvAmt001.Size = new System.Drawing.Size(118, 32);
-			this.txtInvAmt001.TabIndex = 8;
+			this.txtInvAmt001.TabIndex = 9;
 			// 
 			// label11
 			// 
 			this.label11.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label11.Location = new System.Drawing.Point(1030, 260);
+			this.label11.Location = new System.Drawing.Point(962, 265);
 			this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(254, 37);
+			this.label11.Size = new System.Drawing.Size(155, 37);
 			this.label11.TabIndex = 30;
 			this.label11.Text = "Expected Profit";
 			// 
@@ -434,16 +454,16 @@ namespace StockOptionsHelper
 			// 
 			this.txtExpProfitAmt001.BackColor = System.Drawing.SystemColors.Info;
 			this.txtExpProfitAmt001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtExpProfitAmt001.Location = new System.Drawing.Point(1043, 330);
-			this.txtExpProfitAmt001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtExpProfitAmt001.Location = new System.Drawing.Point(966, 330);
+			this.txtExpProfitAmt001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtExpProfitAmt001.Name = "txtExpProfitAmt001";
 			this.txtExpProfitAmt001.Size = new System.Drawing.Size(128, 32);
-			this.txtExpProfitAmt001.TabIndex = 9;
+			this.txtExpProfitAmt001.TabIndex = 10;
 			// 
 			// label13
 			// 
 			this.label13.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label13.Location = new System.Drawing.Point(1038, 296);
+			this.label13.Location = new System.Drawing.Point(962, 295);
 			this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(116, 33);
@@ -453,10 +473,10 @@ namespace StockOptionsHelper
 			// label14
 			// 
 			this.label14.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label14.Location = new System.Drawing.Point(1184, 296);
+			this.label14.Location = new System.Drawing.Point(1107, 296);
 			this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(116, 33);
+			this.label14.Size = new System.Drawing.Size(84, 33);
 			this.label14.TabIndex = 30;
 			this.label14.Text = "Percent";
 			// 
@@ -464,16 +484,16 @@ namespace StockOptionsHelper
 			// 
 			this.txtExpProfitPerc001.BackColor = System.Drawing.SystemColors.Info;
 			this.txtExpProfitPerc001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtExpProfitPerc001.Location = new System.Drawing.Point(1189, 330);
-			this.txtExpProfitPerc001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtExpProfitPerc001.Location = new System.Drawing.Point(1112, 330);
+			this.txtExpProfitPerc001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtExpProfitPerc001.Name = "txtExpProfitPerc001";
-			this.txtExpProfitPerc001.Size = new System.Drawing.Size(78, 32);
-			this.txtExpProfitPerc001.TabIndex = 10;
+			this.txtExpProfitPerc001.Size = new System.Drawing.Size(69, 32);
+			this.txtExpProfitPerc001.TabIndex = 11;
 			// 
 			// label15
 			// 
 			this.label15.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label15.Location = new System.Drawing.Point(1470, 296);
+			this.label15.Location = new System.Drawing.Point(1431, 296);
 			this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(116, 33);
@@ -484,16 +504,16 @@ namespace StockOptionsHelper
 			// 
 			this.txtMaxProfitPerc001.BackColor = System.Drawing.SystemColors.Info;
 			this.txtMaxProfitPerc001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtMaxProfitPerc001.Location = new System.Drawing.Point(1475, 330);
-			this.txtMaxProfitPerc001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtMaxProfitPerc001.Location = new System.Drawing.Point(1436, 330);
+			this.txtMaxProfitPerc001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtMaxProfitPerc001.Name = "txtMaxProfitPerc001";
 			this.txtMaxProfitPerc001.Size = new System.Drawing.Size(82, 32);
-			this.txtMaxProfitPerc001.TabIndex = 12;
+			this.txtMaxProfitPerc001.TabIndex = 14;
 			// 
 			// label16
 			// 
 			this.label16.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label16.Location = new System.Drawing.Point(1321, 296);
+			this.label16.Location = new System.Drawing.Point(1285, 295);
 			this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(116, 33);
@@ -503,10 +523,10 @@ namespace StockOptionsHelper
 			// label17
 			// 
 			this.label17.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label17.Location = new System.Drawing.Point(1314, 260);
+			this.label17.Location = new System.Drawing.Point(1286, 266);
 			this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(254, 37);
+			this.label17.Size = new System.Drawing.Size(115, 37);
 			this.label17.TabIndex = 30;
 			this.label17.Text = "Max Profit";
 			// 
@@ -514,16 +534,16 @@ namespace StockOptionsHelper
 			// 
 			this.txtMaxProfitAmt001.BackColor = System.Drawing.SystemColors.Info;
 			this.txtMaxProfitAmt001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtMaxProfitAmt001.Location = new System.Drawing.Point(1326, 330);
-			this.txtMaxProfitAmt001.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.txtMaxProfitAmt001.Location = new System.Drawing.Point(1287, 330);
+			this.txtMaxProfitAmt001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtMaxProfitAmt001.Name = "txtMaxProfitAmt001";
 			this.txtMaxProfitAmt001.Size = new System.Drawing.Size(131, 32);
-			this.txtMaxProfitAmt001.TabIndex = 11;
+			this.txtMaxProfitAmt001.TabIndex = 13;
 			// 
 			// button1
 			// 
 			this.button1.Location = new System.Drawing.Point(80, 369);
-			this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.button1.Margin = new System.Windows.Forms.Padding(2);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(4, 4);
 			this.button1.TabIndex = 30;
@@ -534,7 +554,7 @@ namespace StockOptionsHelper
 			// 
 			this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnSave.Location = new System.Drawing.Point(19, 230);
-			this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnSave.Margin = new System.Windows.Forms.Padding(2);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(184, 43);
 			this.btnSave.TabIndex = 31;
@@ -546,13 +566,73 @@ namespace StockOptionsHelper
 			// 
 			this.btnHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnHistory.Location = new System.Drawing.Point(224, 230);
-			this.btnHistory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.btnHistory.Margin = new System.Windows.Forms.Padding(2);
 			this.btnHistory.Name = "btnHistory";
 			this.btnHistory.Size = new System.Drawing.Size(184, 43);
 			this.btnHistory.TabIndex = 32;
 			this.btnHistory.TabStop = false;
 			this.btnHistory.Text = "View History";
 			this.btnHistory.UseVisualStyleBackColor = true;
+			// 
+			// label22
+			// 
+			this.label22.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label22.Location = new System.Drawing.Point(724, 263);
+			this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(95, 57);
+			this.label22.TabIndex = 34;
+			this.label22.Text = "Contract Price";
+			// 
+			// txtContractPrice001
+			// 
+			this.txtContractPrice001.BackColor = System.Drawing.SystemColors.Info;
+			this.txtContractPrice001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtContractPrice001.Location = new System.Drawing.Point(730, 329);
+			this.txtContractPrice001.Margin = new System.Windows.Forms.Padding(4);
+			this.txtContractPrice001.Name = "txtContractPrice001";
+			this.txtContractPrice001.Size = new System.Drawing.Size(78, 32);
+			this.txtContractPrice001.TabIndex = 8;
+			// 
+			// label23
+			// 
+			this.label23.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label23.Location = new System.Drawing.Point(1193, 296);
+			this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(84, 33);
+			this.label23.TabIndex = 36;
+			this.label23.Text = "APR";
+			// 
+			// txtExpProfitPercAPR001
+			// 
+			this.txtExpProfitPercAPR001.BackColor = System.Drawing.SystemColors.Info;
+			this.txtExpProfitPercAPR001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtExpProfitPercAPR001.Location = new System.Drawing.Point(1198, 330);
+			this.txtExpProfitPercAPR001.Margin = new System.Windows.Forms.Padding(4);
+			this.txtExpProfitPercAPR001.Name = "txtExpProfitPercAPR001";
+			this.txtExpProfitPercAPR001.Size = new System.Drawing.Size(69, 32);
+			this.txtExpProfitPercAPR001.TabIndex = 12;
+			// 
+			// label24
+			// 
+			this.label24.Font = new System.Drawing.Font("Times New Roman", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label24.Location = new System.Drawing.Point(1526, 296);
+			this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(84, 33);
+			this.label24.TabIndex = 38;
+			this.label24.Text = "APR";
+			// 
+			// txtMaxProfitPercAPR001
+			// 
+			this.txtMaxProfitPercAPR001.BackColor = System.Drawing.SystemColors.Info;
+			this.txtMaxProfitPercAPR001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtMaxProfitPercAPR001.Location = new System.Drawing.Point(1531, 330);
+			this.txtMaxProfitPercAPR001.Margin = new System.Windows.Forms.Padding(4);
+			this.txtMaxProfitPercAPR001.Name = "txtMaxProfitPercAPR001";
+			this.txtMaxProfitPercAPR001.Size = new System.Drawing.Size(69, 32);
+			this.txtMaxProfitPercAPR001.TabIndex = 15;
 			// 
 			// ThetaReturnCalculator
 			// 
@@ -561,6 +641,12 @@ namespace StockOptionsHelper
 			this.AutoSize = true;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.ClientSize = new System.Drawing.Size(1658, 655);
+			this.Controls.Add(this.label24);
+			this.Controls.Add(this.txtMaxProfitPercAPR001);
+			this.Controls.Add(this.label23);
+			this.Controls.Add(this.txtExpProfitPercAPR001);
+			this.Controls.Add(this.label22);
+			this.Controls.Add(this.txtContractPrice001);
 			this.Controls.Add(this.btnHistory);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.button1);
@@ -591,7 +677,7 @@ namespace StockOptionsHelper
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.txtQuantity001);
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "ThetaReturnCalculator";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Wheel Return Calculator";
@@ -649,6 +735,13 @@ namespace StockOptionsHelper
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button btnSave;
 		private System.Windows.Forms.Button btnHistory;
+		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.Label label22;
+		private System.Windows.Forms.TextBox txtContractPrice001;
+		private System.Windows.Forms.Label label23;
+		private System.Windows.Forms.TextBox txtExpProfitPercAPR001;
+		private System.Windows.Forms.Label label24;
+		private System.Windows.Forms.TextBox txtMaxProfitPercAPR001;
 	}
 }
 

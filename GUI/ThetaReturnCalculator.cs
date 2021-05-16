@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static StockOptionsHelper.Controllers.ThetaReturnCalculatorController;
 
 namespace StockOptionsHelper
 {
@@ -17,6 +18,7 @@ namespace StockOptionsHelper
 	{
 		private DataHelper DH;
 		private FormController formController = new FormController();
+		
 		public ThetaReturnCalculator()
 		{
 			DH = DataHelper.Instance;
@@ -92,9 +94,12 @@ namespace StockOptionsHelper
 				} else if (control.Name.StartsWith(CC_PREFIX)) {
 					CheckBox ccButton = (CheckBox)control;
 					ccButton.Click += new System.EventHandler(this.btnCCToggle_Click_Handler);
-				} else if (control.Name.StartsWith(SHARE_PRICE_PREFIX) || control.Name.StartsWith(EXP_DATE_PREFIX) || control.Name.StartsWith(STRIKE_PRICE_PREFIX) || control.Name.StartsWith(CONTRACT_QUANTITY_PREFIX)) {
+				} else if (control.Name.StartsWith(SHARE_PRICE_PREFIX) || control.Name.StartsWith(STRIKE_PRICE_PREFIX) || control.Name.StartsWith(CONTRACT_QUANTITY_PREFIX)) {
 					TextBox field = (TextBox)control;
 					field.TextChanged += new EventHandler(this.handleTextBoxChanged);
+				} else if (control.Name.StartsWith(EXP_DATE_PREFIX)) {
+					ComboBox box = (ComboBox)control;
+					box.TextChanged += new EventHandler(this.handleTextBoxChanged);
 				}
 
 
@@ -107,7 +112,7 @@ namespace StockOptionsHelper
 
 		private void IncrementControlInfo(Control control, int nSuffix, String prefix, int rowNum, int columnCount) {
 			nSuffix++;
-			String newName = prefix + nSuffix.ToString("000");
+			String newName = prefix + nSuffix.ToString("000"); //Note: Hardcoding a limit of 999 rows with this. Not likely to ever need more, but if we do will need to refactor.
 			control.Name = newName;
 			control.TabIndex = control.TabIndex + (rowNum * columnCount);
 		}
@@ -135,8 +140,86 @@ namespace StockOptionsHelper
 		}
 
 		private void handleTextBoxChanged(object sender, EventArgs e) {
+			TextBox source = (TextBox)sender;
 			//If all of the fields needed to do the calculation are filled out, then do it and display the results!
+			if (isRowReady(source.Name)) {
 
+			}
+		}
+
+		/// <summary>
+		/// This function knows whether a row is ready to calculate the return or not, by checking each individual control (i.e. dependent textboxes, buttons)
+		/// anyFieldName - This can be the field name for any field in the row.
+		/// </summary>
+		/// <param name="anyFieldName"></param>
+		/// <returns></returns>
+		private bool isRowReady(String anyFieldName) {
+			String suffix = determineSuffix(anyFieldName);
+			if (isFieldReady(SHARE_PRICE_PREFIX, suffix) && isFieldReady(EXP_DATE_PREFIX, suffix) && isFieldReady(STRIKE_PRICE_PREFIX, suffix) 
+				&& isFieldReady(CONTRACT_QUANTITY_PREFIX, suffix) && areToggleButtonsReady(CSP_PREFIX, CC_PREFIX, suffix)) {
+				return true;
+			}
+			return false;
+		}
+
+		private bool isFieldReady(String name, String suffix = "") {
+			//Todo: Could do better validation checks on the fields, but for now we'll just make sure they are valued.
+			String value = getFieldValue(name, suffix);
+			if (String.IsNullOrWhiteSpace(value))
+				return false;
+			return true;
+		}
+
+		/// <summary>
+		/// For TextBox fields and ComboBox fields, and possibly more. May or may not be useful for other fields, as currently it will return ctrl.Text for any control, so use carefully for non text boxes.
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="suffix"></param>
+		/// <returns></returns>
+		private String getFieldValue(String name, String suffix = "") {
+			Control ctrl = this.Controls.Find(name + suffix, true).FirstOrDefault();
+			return ctrl.Text;
+		}
+
+		private ReturnCalculationType getCalculationType(String suffix) {
+			CheckBox cspButton = (CheckBox) this.Controls.Find(CSP_PREFIX + suffix, true).FirstOrDefault();
+			CheckBox ccButton = (CheckBox)this.Controls.Find(CC_PREFIX + suffix, true).FirstOrDefault();
+			if (cspButton.Checked)
+				return ReturnCalculationType.CashSecuredPut;
+			else
+				return ReturnCalculationType.CoveredCall;
+		}
+
+		private bool areToggleButtonsReady(String name1, String name2, String suffix = "") {
+			//This check may end up not being necessary, because we have the feature to default the value of the cc or csp, but for now it makes logical sense so I will put it in.
+			CheckBox button1 = (CheckBox)this.Controls.Find(name1 + suffix, true).FirstOrDefault();
+			CheckBox button2 = (CheckBox)this.Controls.Find(name2 + suffix, true).FirstOrDefault();
+			if (button1.Checked || button2.Checked) { //XOR would be appropriate, but also this buttons are toggle so only one can be set, will assume that is working so no XOR needed
+				return true;
+			}
+			return false;
+		}
+		private String determinePrefix(String name) {
+			String suffix; String prefix;
+			determinePrefixSuffix(name, out prefix, out suffix);
+			return prefix;
+		}
+
+		private String determineSuffix(String name) {
+			String suffix; String prefix;
+			determinePrefixSuffix(name, out prefix, out suffix);
+			return suffix;
+		}
+
+		private void determinePrefixSuffix(String name, out String prefix, out String suffix) {
+			//This assumes for rows that our fields our named as alpha prefixes, followed by numeric suffix. In fact, the prefix can contain
+			//numeric characters, just so long as the last character in the prefix is not numeric!
+			int pos = name.Length;
+			while (!Char.IsLetter(name[pos-1])) {
+				--pos;
+			}
+			prefix = name.Substring(0, pos);
+			suffix = name.Substring(pos - 1);
 		}
 
 	}
