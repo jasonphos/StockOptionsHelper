@@ -10,19 +10,27 @@ namespace StockOptionsHelper.Controllers {
 			CoveredCall, CashSecuredPut
 		}
 
-		public void CalculateCoveredCallReturn(DateTime ExpirationDate, decimal SharePrice, decimal strike, int quantity, 
-			out decimal InvestedAmount, out decimal ExpectedProfit, out decimal ExpectedProfitPerc, out decimal ExpectedProfitAnnualPerc,
-			out decimal ExpectedMaxProfit, out decimal ExpectedMaxProfitPerc, out decimal ExpectedMaxProfitAnnualPerc, int OPTION_SHARES_PER_CONTRACT = 100) {
+		public void CalculateCoveredCallReturn(DateTime expirationDate, decimal sharePrice, decimal strike, int quantity, decimal optionPremium,
+			out decimal investedAmount, out decimal expectedProfit, out decimal expectedProfitPerc, out decimal expectedProfitAnnualPerc,
+			out decimal expectedMaxProfit, out decimal expectedMaxProfitPerc, out decimal expectedMaxProfitAnnualPerc, int OPTION_SHARES_PER_CONTRACT = 100) {
 
-			
 
-			decimal InvestedAmount = (SharePrice * quantity * OPTION_SHARES_PER_CONTRACT) - 
+
+			investedAmount = (sharePrice * quantity * OPTION_SHARES_PER_CONTRACT) - (quantity * optionPremium);
+			expectedProfit = optionPremium * quantity;
+			expectedProfitPerc = CalculateRawPerc(investedAmount, expectedProfit);
+			expectedProfitAnnualPerc = CalculateAnnualPerc(expirationDate, investedAmount, expectedProfit);
+			expectedMaxProfit = expectedProfit + ((strike - sharePrice) * OPTION_SHARES_PER_CONTRACT * quantity);
+			expectedMaxProfitPerc = CalculateRawPerc(investedAmount, expectedMaxProfit);
+			expectedMaxProfitAnnualPerc = CalculateAnnualPerc(expirationDate, investedAmount, expectedMaxProfit);
 		}
 
-		private void CalculateRawPerc(decimal InvestedAmount, decimal Profit) {
-
+		private decimal CalculateRawPerc(decimal investedAmount, decimal profit) {
+			return profit / investedAmount;
 		}
-		private decimal CalculateAnnualPerc(DateTime ExpirationDate, decimal Profit) {
+		private decimal CalculateAnnualPerc(DateTime expirationDate, decimal investedAmount, decimal profit) {
+
+			double days = (expirationDate - DateTime.Now.Date).TotalDays;
 
 		}
 	}
