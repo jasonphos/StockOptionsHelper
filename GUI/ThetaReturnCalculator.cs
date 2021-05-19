@@ -23,7 +23,7 @@ namespace StockOptionsHelper
 		{
 			DH = DataHelper.Instance;
 			InitializeComponent();
-			SetupRows(1, 12); //The minimum and maximum tabindex for the columns to the row!
+			SetupRows(1, 15); //The minimum and maximum tabindex for the columns to the row!
 			SetDefaults();
 		}
 		private static readonly string CSP_PREFIX = "btnCSPToggle";
@@ -89,16 +89,16 @@ namespace StockOptionsHelper
 				newControl.Location = new Point(newControl.Location.X, newControl.Location.Y + (newControl.Height + RowSpace)*rowNum);
 
 				if (control.Name.StartsWith(CSP_PREFIX)) {
-					CheckBox cspButton = (CheckBox)control;
+					CheckBox cspButton = (CheckBox)newControl;
 					cspButton.Click += new System.EventHandler(this.btnCSPToggle_Click_Handler);
 				} else if (control.Name.StartsWith(CC_PREFIX)) {
-					CheckBox ccButton = (CheckBox)control;
+					CheckBox ccButton = (CheckBox)newControl;
 					ccButton.Click += new System.EventHandler(this.btnCCToggle_Click_Handler);
 				} else if (control.Name.StartsWith(SHARE_PRICE_PREFIX) || control.Name.StartsWith(STRIKE_PRICE_PREFIX) || control.Name.StartsWith(CONTRACT_QUANTITY_PREFIX)) {
-					TextBox field = (TextBox)control;
+					TextBox field = (TextBox)newControl;
 					field.TextChanged += new EventHandler(this.handleTextBoxChanged);
 				} else if (control.Name.StartsWith(EXP_DATE_PREFIX)) {
-					ComboBox box = (ComboBox)control;
+					ComboBox box = (ComboBox)newControl;
 					box.TextChanged += new EventHandler(this.handleTextBoxChanged);
 				}
 
