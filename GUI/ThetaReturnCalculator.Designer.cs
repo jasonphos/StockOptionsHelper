@@ -119,6 +119,7 @@ namespace StockOptionsHelper
 			this.txtQuantity001.Name = "txtQuantity001";
 			this.txtQuantity001.Size = new System.Drawing.Size(66, 32);
 			this.txtQuantity001.TabIndex = 7;
+			this.txtQuantity001.Click += new System.EventHandler(this.handleTextBoxChanged);
 			// 
 			// label1
 			// 
@@ -150,6 +151,7 @@ namespace StockOptionsHelper
 			this.cmboExpDate001.Name = "cmboExpDate001";
 			this.cmboExpDate001.Size = new System.Drawing.Size(136, 33);
 			this.cmboExpDate001.TabIndex = 5;
+			this.cmboExpDate001.Click += new System.EventHandler(this.handleTextBoxChanged);
 			// 
 			// label3
 			// 
@@ -170,6 +172,7 @@ namespace StockOptionsHelper
 			this.txtSharePrice001.Name = "txtSharePrice001";
 			this.txtSharePrice001.Size = new System.Drawing.Size(119, 32);
 			this.txtSharePrice001.TabIndex = 2;
+			this.txtSharePrice001.Click += new System.EventHandler(this.handleTextBoxChanged);
 			// 
 			// label4
 			// 
@@ -189,6 +192,7 @@ namespace StockOptionsHelper
 			this.txtStrike001.Name = "txtStrike001";
 			this.txtStrike001.Size = new System.Drawing.Size(66, 32);
 			this.txtStrike001.TabIndex = 6;
+			this.txtStrike001.Click += new System.EventHandler(this.handleTextBoxChanged);
 			// 
 			// lblSymbol001
 			// 
@@ -593,6 +597,7 @@ namespace StockOptionsHelper
 			this.txtContractPrice001.Name = "txtContractPrice001";
 			this.txtContractPrice001.Size = new System.Drawing.Size(78, 32);
 			this.txtContractPrice001.TabIndex = 8;
+			this.txtContractPrice001.Click += new System.EventHandler(this.handleTextBoxChanged);
 			// 
 			// label23
 			// 

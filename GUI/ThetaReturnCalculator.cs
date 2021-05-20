@@ -18,6 +18,7 @@ namespace StockOptionsHelper
 	{
 		private DataHelper DH;
 		private FormController formController = new FormController();
+		private ThetaReturnCalculatorController calculator = new ThetaReturnCalculatorController();
 		
 		public ThetaReturnCalculator()
 		{
@@ -26,12 +27,26 @@ namespace StockOptionsHelper
 			SetupRows(1, 15); //The minimum and maximum tabindex for the columns to the row!
 			SetDefaults();
 		}
+
+		private static string SYMBOL_PREFIX = "txtSymbol";
+		private static readonly string SHARE_PRICE_PREFIX = "txtSharePrice";
 		private static readonly string CSP_PREFIX = "btnCSPToggle";
 		private static readonly string CC_PREFIX = "btnCCToggle";
-		private static readonly string SHARE_PRICE_PREFIX = "txtSharePrice";
+		
 		private static readonly string EXP_DATE_PREFIX = "cmboExpDate";
-		private static readonly string STRIKE_PRICE_PREFIX = "txtStrike001";
-		private static readonly string CONTRACT_QUANTITY_PREFIX = "txtQuantity001";
+		private static readonly string STRIKE_PRICE_PREFIX = "txtStrike";
+		private static readonly string CONTRACT_QUANTITY_PREFIX = "txtQuantity";
+		private static readonly string CONTRACT_PRICE_PREFIX = "txtContractPrice";
+		private static readonly string INVESTED_AMOUNT_PREFIX = "txtInvAmt";
+		private static readonly string EXPECTED_PROFIT_AMT_PREFIX = "txtExpProfitAmt";
+		private static readonly string EXPECTED_PROFIT_PERCENT_PREFIX = "txtExpProfitPerc";
+		private static readonly string EXPECTED_PROFIT_PERCENT_APR_PREFIX = "txtExpProfitPercAPR";
+		private static readonly string MAX_PROFIT_AMT_PREFIX = "txtMaxProfitAmt";
+		private static readonly string MAX_PROFIT_PERCENT_PREFIX = "txtMaxProfitPerc";
+		private static readonly string MAX_PROFIT_PERCENT_APR_PREFIX = "txtMaxProfitPercAPR";
+
+
+
 
 		private void SetDefaults() {
 			//Defaults should set it equal to the previous setting
@@ -103,16 +118,15 @@ namespace StockOptionsHelper
 				}
 
 
-				IncrementControlInfo(newControl, nSuffix, prefix, rowNum, columnCount);
+				IncrementControlInfo(newControl, prefix, rowNum+1, columnCount);
 				this.Controls.Add(newControl);
 				newControl.Show();
 			}
 			
 		}
 
-		private void IncrementControlInfo(Control control, int nSuffix, String prefix, int rowNum, int columnCount) {
-			nSuffix++;
-			String newName = prefix + nSuffix.ToString("000"); //Note: Hardcoding a limit of 999 rows with this. Not likely to ever need more, but if we do will need to refactor.
+		private void IncrementControlInfo(Control control, String prefix, int rowNum, int columnCount) {
+			String newName = prefix + rowNum.ToString("000"); //Note: Hardcoding a limit of 999 rows with this. Not likely to ever need more, but if we do will need to refactor.
 			control.Name = newName;
 			control.TabIndex = control.TabIndex + (rowNum * columnCount);
 		}
@@ -122,9 +136,13 @@ namespace StockOptionsHelper
 		}
 		private void btnCSPToggle_Click_Handler(object sender, EventArgs e) {
 			handleTogglesClicked( ((CheckBox) sender).Name, CSP_PREFIX, CC_PREFIX);
+			//Also, this should trigger handleTextBoxChanged, because that will run the calculator if all textboxes are ready.
+			handleTextBoxChanged(sender, e);
 		}
 		private void btnCCToggle_Click_Handler(object sender, EventArgs e) {
 			handleTogglesClicked(((CheckBox)sender).Name, CC_PREFIX, CSP_PREFIX);
+			//Also, this should trigger handleTextBoxChanged, because that will run the calculator if all textboxes are ready.
+			handleTextBoxChanged(sender, e);
 		}
 
 		private void handleTogglesClicked(string clickedName, string clickedPrefix, string otherPrefix) {
@@ -140,9 +158,22 @@ namespace StockOptionsHelper
 		}
 
 		private void handleTextBoxChanged(object sender, EventArgs e) {
-			TextBox source = (TextBox)sender;
+			Control source = (Control)sender;
 			//If all of the fields needed to do the calculation are filled out, then do it and display the results!
-			if (isRowReady(source.Name)) {
+			String suffix = determineSuffix(source.Name);
+			if (isRowReady(suffix)) {
+				
+				
+				switch (getCalculationType(suffix)) {
+					case ReturnCalculationType.CoveredCall:
+						calculator.CalculateCoveredCallReturn(getControl())
+						break;
+					case ReturnCalculationType.CashSecuredPut:
+
+						break;
+				}
+
+
 
 			}
 		}
@@ -153,8 +184,7 @@ namespace StockOptionsHelper
 		/// </summary>
 		/// <param name="anyFieldName"></param>
 		/// <returns></returns>
-		private bool isRowReady(String anyFieldName) {
-			String suffix = determineSuffix(anyFieldName);
+		private bool isRowReady(String suffix) {
 			if (isFieldReady(SHARE_PRICE_PREFIX, suffix) && isFieldReady(EXP_DATE_PREFIX, suffix) && isFieldReady(STRIKE_PRICE_PREFIX, suffix) 
 				&& isFieldReady(CONTRACT_QUANTITY_PREFIX, suffix) && areToggleButtonsReady(CSP_PREFIX, CC_PREFIX, suffix)) {
 				return true;
@@ -179,6 +209,9 @@ namespace StockOptionsHelper
 		private String getFieldValue(String name, String suffix = "") {
 			Control ctrl = this.Controls.Find(name + suffix, true).FirstOrDefault();
 			return ctrl.Text;
+		}
+		private Control getControl(String name, String suffix = "") {
+			return this.Controls.Find(name + suffix, true).FirstOrDefault();
 		}
 
 		private ReturnCalculationType getCalculationType(String suffix) {
