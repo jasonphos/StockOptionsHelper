@@ -10,12 +10,12 @@ namespace StockOptionsHelper.Controllers {
 			CoveredCall, CashSecuredPut
 		}
 
-		public void CalculateCoveredCallReturn(DateTime expirationDate, decimal sharePrice, decimal strike, int quantity, decimal optionPremium,
+		public void CalculateCoveredCallReturn(DateTime expirationDate, decimal sharePrice, decimal strike, int quantity, decimal contractPrice,
 			out decimal investedAmount, out decimal expectedProfit, out decimal expectedProfitPerc, out decimal expectedProfitAnnualPerc,
 			out decimal expectedMaxProfit, out decimal expectedMaxProfitPerc, out decimal expectedMaxProfitAnnualPerc, int OPTION_SHARES_PER_CONTRACT = 100) {
 
-			investedAmount = (sharePrice * quantity * OPTION_SHARES_PER_CONTRACT) - (quantity * optionPremium * OPTION_SHARES_PER_CONTRACT);
-			expectedProfit = optionPremium * quantity * OPTION_SHARES_PER_CONTRACT;
+			investedAmount = (sharePrice * quantity * OPTION_SHARES_PER_CONTRACT) - (quantity * contractPrice * OPTION_SHARES_PER_CONTRACT);
+			expectedProfit = contractPrice * quantity * OPTION_SHARES_PER_CONTRACT;
 			expectedProfitPerc = CalculateRawPerc(investedAmount, expectedProfit);
 			expectedProfitAnnualPerc = CalculateAnnualPerc(expirationDate, investedAmount, expectedProfit);
 			expectedMaxProfit = expectedProfit + ((strike - sharePrice) * OPTION_SHARES_PER_CONTRACT * quantity);
@@ -23,12 +23,12 @@ namespace StockOptionsHelper.Controllers {
 			expectedMaxProfitAnnualPerc = CalculateAnnualPerc(expirationDate, investedAmount, expectedMaxProfit);
 		}
 
-		public void CalcualteCashSecuredPutReturn(DateTime expirationDate, decimal sharePrice, decimal strike, int quantity, decimal optionPremium,
+		public void CalcualteCashSecuredPutReturn(DateTime expirationDate, decimal sharePrice, decimal strike, int quantity, decimal contractPrice,
 			out decimal investedAmount, out decimal expectedProfit, out decimal expectedProfitPerc, out decimal expectedProfitAnnualPerc,
 			out decimal expectedMaxProfit, out decimal expectedMaxProfitPerc, out decimal expectedMaxProfitAnnualPerc, int OPTION_SHARES_PER_CONTRACT = 100) {
 
-			investedAmount = (strike * quantity * OPTION_SHARES_PER_CONTRACT) - (quantity * optionPremium * OPTION_SHARES_PER_CONTRACT);
-			expectedProfit = optionPremium * quantity * OPTION_SHARES_PER_CONTRACT;
+			investedAmount = (strike * quantity * OPTION_SHARES_PER_CONTRACT) - (quantity * contractPrice * OPTION_SHARES_PER_CONTRACT);
+			expectedProfit = contractPrice * quantity * OPTION_SHARES_PER_CONTRACT;
 			expectedProfitPerc = CalculateRawPerc(investedAmount, expectedProfit);
 			expectedProfitAnnualPerc = CalculateAnnualPerc(expirationDate, investedAmount, expectedProfit);
 			expectedMaxProfit = expectedProfit;

@@ -162,14 +162,21 @@ namespace StockOptionsHelper
 			//If all of the fields needed to do the calculation are filled out, then do it and display the results!
 			String suffix = determineSuffix(source.Name);
 			if (isRowReady(suffix)) {
-				
-				
+
+				decimal investedAmount; decimal expectedProfit; decimal expectedProfitPerc; decimal expectedProfitAnnualPerc;
+				decimal expectedMaxProfit; decimal expectedMaxProfitPerc; decimal expectedMaxProfitAnnualPerc;
 				switch (getCalculationType(suffix)) {
 					case ReturnCalculationType.CoveredCall:
-						calculator.CalculateCoveredCallReturn(getControl())
+						calculator.CalculateCoveredCallReturn(getFieldValueDateTime(EXP_DATE_PREFIX, suffix), getFieldValueDecimal(SHARE_PRICE_PREFIX, suffix),
+							getFieldValueDecimal(STRIKE_PRICE_PREFIX, suffix), getFieldValueInt(CONTRACT_QUANTITY_PREFIX, suffix),
+							getFieldValueInt(CONTRACT_PRICE_PREFIX, suffix), out investedAmount, out expectedProfit, out expectedProfitPerc, out expectedProfitAnnualPerc,
+							out expectedMaxProfit, out expectedMaxProfitPerc, out expectedMaxProfitAnnualPerc);
 						break;
 					case ReturnCalculationType.CashSecuredPut:
-
+						calculator.CalcualteCashSecuredPutReturn(getFieldValueDateTime(EXP_DATE_PREFIX, suffix), getFieldValueDecimal(SHARE_PRICE_PREFIX, suffix),
+							getFieldValueDecimal(STRIKE_PRICE_PREFIX, suffix), getFieldValueInt(CONTRACT_QUANTITY_PREFIX, suffix),
+							getFieldValueInt(CONTRACT_PRICE_PREFIX, suffix), out investedAmount, out expectedProfit, out expectedProfitPerc, out expectedProfitAnnualPerc,
+							out expectedMaxProfit, out expectedMaxProfitPerc, out expectedMaxProfitAnnualPerc);
 						break;
 				}
 
@@ -210,10 +217,24 @@ namespace StockOptionsHelper
 			Control ctrl = this.Controls.Find(name + suffix, true).FirstOrDefault();
 			return ctrl.Text;
 		}
+		private DateTime getFieldValueDateTime(String name, String suffix = "") {
+			Control ctrl = this.Controls.Find(name + suffix, true).FirstOrDefault();
+			return DateTime.Parse(ctrl.Text);
+		}
+		private Decimal getFieldValueDecimal(String name, String suffix = "") {
+			Control ctrl = this.Controls.Find(name + suffix, true).FirstOrDefault();
+			return Decimal.Parse(ctrl.Text);
+		}
+		private int getFieldValueInt(String name, String suffix = "") {
+			Control ctrl = this.Controls.Find(name + suffix, true).FirstOrDefault();
+			return int.Parse(ctrl.Text);
+		}
+
 		private Control getControl(String name, String suffix = "") {
 			return this.Controls.Find(name + suffix, true).FirstOrDefault();
 		}
 
+		private void setFieldValue
 		private ReturnCalculationType getCalculationType(String suffix) {
 			CheckBox cspButton = (CheckBox) this.Controls.Find(CSP_PREFIX + suffix, true).FirstOrDefault();
 			CheckBox ccButton = (CheckBox)this.Controls.Find(CC_PREFIX + suffix, true).FirstOrDefault();
