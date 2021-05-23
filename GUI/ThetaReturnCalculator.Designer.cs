@@ -70,7 +70,6 @@ namespace StockOptionsHelper
 			this.label16 = new System.Windows.Forms.Label();
 			this.label17 = new System.Windows.Forms.Label();
 			this.txtMaxProfitAmt001 = new System.Windows.Forms.TextBox();
-			this.button1 = new System.Windows.Forms.Button();
 			this.btnSave = new System.Windows.Forms.Button();
 			this.btnHistory = new System.Windows.Forms.Button();
 			this.label22 = new System.Windows.Forms.Label();
@@ -113,13 +112,14 @@ namespace StockOptionsHelper
 			// 
 			// txtQuantity001
 			// 
-			this.txtQuantity001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtQuantity001.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtQuantity001.Location = new System.Drawing.Point(645, 331);
 			this.txtQuantity001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtQuantity001.Name = "txtQuantity001";
-			this.txtQuantity001.Size = new System.Drawing.Size(66, 32);
+			this.txtQuantity001.Size = new System.Drawing.Size(66, 33);
 			this.txtQuantity001.TabIndex = 7;
-			this.txtQuantity001.Click += new System.EventHandler(this.handleTextBoxChanged);
+			this.txtQuantity001.TextChanged += new System.EventHandler(this.handleTextBoxChanged);
+			this.txtQuantity001.AutoSize = false;
 			// 
 			// label1
 			// 
@@ -143,15 +143,16 @@ namespace StockOptionsHelper
 			// 
 			// cmboExpDate001
 			// 
-			this.cmboExpDate001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.cmboExpDate001.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmboExpDate001.FormattingEnabled = true;
-			this.cmboExpDate001.ItemHeight = 25;
+			this.cmboExpDate001.ItemHeight = 24;
 			this.cmboExpDate001.Location = new System.Drawing.Point(410, 330);
 			this.cmboExpDate001.Margin = new System.Windows.Forms.Padding(4);
 			this.cmboExpDate001.Name = "cmboExpDate001";
 			this.cmboExpDate001.Size = new System.Drawing.Size(136, 33);
 			this.cmboExpDate001.TabIndex = 5;
-			this.cmboExpDate001.Click += new System.EventHandler(this.handleTextBoxChanged);
+			this.cmboExpDate001.TextChanged += new System.EventHandler(this.handleTextBoxChanged);
+			this.cmboExpDate001.AutoSize = false;
 			// 
 			// label3
 			// 
@@ -166,13 +167,14 @@ namespace StockOptionsHelper
 			// 
 			// txtSharePrice001
 			// 
-			this.txtSharePrice001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtSharePrice001.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtSharePrice001.Location = new System.Drawing.Point(91, 332);
 			this.txtSharePrice001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtSharePrice001.Name = "txtSharePrice001";
-			this.txtSharePrice001.Size = new System.Drawing.Size(119, 32);
+			this.txtSharePrice001.Size = new System.Drawing.Size(119, 33);
 			this.txtSharePrice001.TabIndex = 2;
-			this.txtSharePrice001.Click += new System.EventHandler(this.handleTextBoxChanged);
+			this.txtSharePrice001.TextChanged += new System.EventHandler(this.handleTextBoxChanged);
+			this.txtSharePrice001.AutoSize = false;
 			// 
 			// label4
 			// 
@@ -186,13 +188,14 @@ namespace StockOptionsHelper
 			// 
 			// txtStrike001
 			// 
-			this.txtStrike001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtStrike001.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtStrike001.Location = new System.Drawing.Point(567, 332);
 			this.txtStrike001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtStrike001.Name = "txtStrike001";
-			this.txtStrike001.Size = new System.Drawing.Size(66, 32);
+			this.txtStrike001.Size = new System.Drawing.Size(66, 33);
 			this.txtStrike001.TabIndex = 6;
-			this.txtStrike001.Click += new System.EventHandler(this.handleTextBoxChanged);
+			this.txtStrike001.TextChanged += new System.EventHandler(this.handleTextBoxChanged);
+			this.txtStrike001.AutoSize = false;
 			// 
 			// lblSymbol001
 			// 
@@ -207,12 +210,13 @@ namespace StockOptionsHelper
 			// 
 			// txtSymbol001
 			// 
-			this.txtSymbol001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtSymbol001.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtSymbol001.Location = new System.Drawing.Point(9, 332);
 			this.txtSymbol001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtSymbol001.Name = "txtSymbol001";
-			this.txtSymbol001.Size = new System.Drawing.Size(77, 32);
+			this.txtSymbol001.Size = new System.Drawing.Size(77, 33);
 			this.txtSymbol001.TabIndex = 1;
+			this.txtSymbol001.AutoSize = false;
 			// 
 			// btnCSPToggle001
 			// 
@@ -284,17 +288,19 @@ namespace StockOptionsHelper
 			this.label19.Size = new System.Drawing.Size(61, 25);
 			this.label19.TabIndex = 21;
 			this.label19.Text = "Rows";
+			this.label19.Visible = false;
 			// 
 			// txtRows
 			// 
-			this.txtRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtRows.Location = new System.Drawing.Point(22, 59);
 			this.txtRows.Margin = new System.Windows.Forms.Padding(4);
 			this.txtRows.Name = "txtRows";
-			this.txtRows.Size = new System.Drawing.Size(81, 28);
+			this.txtRows.Size = new System.Drawing.Size(81, 29);
 			this.txtRows.TabIndex = 0;
 			this.txtRows.TabStop = false;
-			this.txtRows.Text = "8";
+			this.txtRows.Text = "10";
+			this.txtRows.Visible = false;
 			// 
 			// label8
 			// 
@@ -309,13 +315,13 @@ namespace StockOptionsHelper
 			// 
 			// cmboExpDateDefault
 			// 
-			this.cmboExpDateDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.cmboExpDateDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmboExpDateDefault.FormattingEnabled = true;
-			this.cmboExpDateDefault.ItemHeight = 25;
+			this.cmboExpDateDefault.ItemHeight = 24;
 			this.cmboExpDateDefault.Location = new System.Drawing.Point(260, 48);
 			this.cmboExpDateDefault.Margin = new System.Windows.Forms.Padding(4);
 			this.cmboExpDateDefault.Name = "cmboExpDateDefault";
-			this.cmboExpDateDefault.Size = new System.Drawing.Size(196, 33);
+			this.cmboExpDateDefault.Size = new System.Drawing.Size(196, 32);
 			this.cmboExpDateDefault.TabIndex = 2;
 			// 
 			// label6
@@ -341,11 +347,11 @@ namespace StockOptionsHelper
 			// 
 			// txtSymbolDefault
 			// 
-			this.txtSymbolDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtSymbolDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtSymbolDefault.Location = new System.Drawing.Point(150, 50);
 			this.txtSymbolDefault.Margin = new System.Windows.Forms.Padding(4);
 			this.txtSymbolDefault.Name = "txtSymbolDefault";
-			this.txtSymbolDefault.Size = new System.Drawing.Size(81, 32);
+			this.txtSymbolDefault.Size = new System.Drawing.Size(81, 29);
 			this.txtSymbolDefault.TabIndex = 1;
 			// 
 			// groupBox2
@@ -436,13 +442,14 @@ namespace StockOptionsHelper
 			// 
 			// txtInvAmt001
 			// 
-			this.txtInvAmt001.BackColor = System.Drawing.SystemColors.Info;
-			this.txtInvAmt001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtInvAmt001.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+			this.txtInvAmt001.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtInvAmt001.Location = new System.Drawing.Point(834, 331);
 			this.txtInvAmt001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtInvAmt001.Name = "txtInvAmt001";
-			this.txtInvAmt001.Size = new System.Drawing.Size(118, 32);
+			this.txtInvAmt001.Size = new System.Drawing.Size(118, 33);
 			this.txtInvAmt001.TabIndex = 9;
+			this.txtInvAmt001.AutoSize = false;
 			// 
 			// label11
 			// 
@@ -456,13 +463,14 @@ namespace StockOptionsHelper
 			// 
 			// txtExpProfitAmt001
 			// 
-			this.txtExpProfitAmt001.BackColor = System.Drawing.SystemColors.Info;
-			this.txtExpProfitAmt001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtExpProfitAmt001.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+			this.txtExpProfitAmt001.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtExpProfitAmt001.Location = new System.Drawing.Point(966, 330);
 			this.txtExpProfitAmt001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtExpProfitAmt001.Name = "txtExpProfitAmt001";
-			this.txtExpProfitAmt001.Size = new System.Drawing.Size(128, 32);
+			this.txtExpProfitAmt001.Size = new System.Drawing.Size(128, 33);
 			this.txtExpProfitAmt001.TabIndex = 10;
+			this.txtExpProfitAmt001.AutoSize = false;
 			// 
 			// label13
 			// 
@@ -486,13 +494,14 @@ namespace StockOptionsHelper
 			// 
 			// txtExpProfitPerc001
 			// 
-			this.txtExpProfitPerc001.BackColor = System.Drawing.SystemColors.Info;
-			this.txtExpProfitPerc001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtExpProfitPerc001.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+			this.txtExpProfitPerc001.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtExpProfitPerc001.Location = new System.Drawing.Point(1112, 330);
 			this.txtExpProfitPerc001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtExpProfitPerc001.Name = "txtExpProfitPerc001";
-			this.txtExpProfitPerc001.Size = new System.Drawing.Size(69, 32);
+			this.txtExpProfitPerc001.Size = new System.Drawing.Size(69, 33);
 			this.txtExpProfitPerc001.TabIndex = 11;
+			this.txtExpProfitPerc001.AutoSize = false;
 			// 
 			// label15
 			// 
@@ -506,13 +515,14 @@ namespace StockOptionsHelper
 			// 
 			// txtMaxProfitPerc001
 			// 
-			this.txtMaxProfitPerc001.BackColor = System.Drawing.SystemColors.Info;
-			this.txtMaxProfitPerc001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtMaxProfitPerc001.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+			this.txtMaxProfitPerc001.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtMaxProfitPerc001.Location = new System.Drawing.Point(1436, 330);
 			this.txtMaxProfitPerc001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtMaxProfitPerc001.Name = "txtMaxProfitPerc001";
-			this.txtMaxProfitPerc001.Size = new System.Drawing.Size(82, 32);
+			this.txtMaxProfitPerc001.Size = new System.Drawing.Size(82, 33);
 			this.txtMaxProfitPerc001.TabIndex = 14;
+			this.txtMaxProfitPerc001.AutoSize = false;
 			// 
 			// label16
 			// 
@@ -536,23 +546,14 @@ namespace StockOptionsHelper
 			// 
 			// txtMaxProfitAmt001
 			// 
-			this.txtMaxProfitAmt001.BackColor = System.Drawing.SystemColors.Info;
-			this.txtMaxProfitAmt001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtMaxProfitAmt001.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+			this.txtMaxProfitAmt001.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtMaxProfitAmt001.Location = new System.Drawing.Point(1287, 330);
 			this.txtMaxProfitAmt001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtMaxProfitAmt001.Name = "txtMaxProfitAmt001";
-			this.txtMaxProfitAmt001.Size = new System.Drawing.Size(131, 32);
+			this.txtMaxProfitAmt001.Size = new System.Drawing.Size(131, 33);
 			this.txtMaxProfitAmt001.TabIndex = 13;
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(80, 369);
-			this.button1.Margin = new System.Windows.Forms.Padding(2);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(4, 4);
-			this.button1.TabIndex = 30;
-			this.button1.Text = "button1";
-			this.button1.UseVisualStyleBackColor = true;
+			this.txtMaxProfitAmt001.AutoSize = false;
 			// 
 			// btnSave
 			// 
@@ -591,13 +592,14 @@ namespace StockOptionsHelper
 			// txtContractPrice001
 			// 
 			this.txtContractPrice001.BackColor = System.Drawing.SystemColors.Info;
-			this.txtContractPrice001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtContractPrice001.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtContractPrice001.Location = new System.Drawing.Point(730, 329);
 			this.txtContractPrice001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtContractPrice001.Name = "txtContractPrice001";
-			this.txtContractPrice001.Size = new System.Drawing.Size(78, 32);
+			this.txtContractPrice001.Size = new System.Drawing.Size(78, 33);
 			this.txtContractPrice001.TabIndex = 8;
-			this.txtContractPrice001.Click += new System.EventHandler(this.handleTextBoxChanged);
+			this.txtContractPrice001.TextChanged += new System.EventHandler(this.handleTextBoxChanged);
+			this.txtContractPrice001.AutoSize = false;
 			// 
 			// label23
 			// 
@@ -611,13 +613,14 @@ namespace StockOptionsHelper
 			// 
 			// txtExpProfitPercAPR001
 			// 
-			this.txtExpProfitPercAPR001.BackColor = System.Drawing.SystemColors.Info;
-			this.txtExpProfitPercAPR001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtExpProfitPercAPR001.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+			this.txtExpProfitPercAPR001.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtExpProfitPercAPR001.Location = new System.Drawing.Point(1198, 330);
 			this.txtExpProfitPercAPR001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtExpProfitPercAPR001.Name = "txtExpProfitPercAPR001";
-			this.txtExpProfitPercAPR001.Size = new System.Drawing.Size(69, 32);
+			this.txtExpProfitPercAPR001.Size = new System.Drawing.Size(69, 33);
 			this.txtExpProfitPercAPR001.TabIndex = 12;
+			this.txtExpProfitPercAPR001.AutoSize = false;
 			// 
 			// label24
 			// 
@@ -631,18 +634,20 @@ namespace StockOptionsHelper
 			// 
 			// txtMaxProfitPercAPR001
 			// 
-			this.txtMaxProfitPercAPR001.BackColor = System.Drawing.SystemColors.Info;
-			this.txtMaxProfitPercAPR001.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtMaxProfitPercAPR001.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+			this.txtMaxProfitPercAPR001.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtMaxProfitPercAPR001.Location = new System.Drawing.Point(1531, 330);
 			this.txtMaxProfitPercAPR001.Margin = new System.Windows.Forms.Padding(4);
 			this.txtMaxProfitPercAPR001.Name = "txtMaxProfitPercAPR001";
-			this.txtMaxProfitPercAPR001.Size = new System.Drawing.Size(69, 32);
+			this.txtMaxProfitPercAPR001.Size = new System.Drawing.Size(69, 33);
 			this.txtMaxProfitPercAPR001.TabIndex = 15;
+			this.txtMaxProfitPercAPR001.AutoSize = false;
 			// 
 			// ThetaReturnCalculator
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScroll = true;
 			this.AutoSize = true;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.ClientSize = new System.Drawing.Size(1658, 655);
@@ -654,7 +659,6 @@ namespace StockOptionsHelper
 			this.Controls.Add(this.txtContractPrice001);
 			this.Controls.Add(this.btnHistory);
 			this.Controls.Add(this.btnSave);
-			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label15);
 			this.Controls.Add(this.txtMaxProfitPerc001);
 			this.Controls.Add(this.label16);
@@ -684,7 +688,7 @@ namespace StockOptionsHelper
 			this.Controls.Add(this.txtQuantity001);
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "ThetaReturnCalculator";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
 			this.Text = "Wheel Return Calculator";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
@@ -737,7 +741,6 @@ namespace StockOptionsHelper
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.TextBox txtRows;
 		private System.Windows.Forms.Label label20;
-		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button btnSave;
 		private System.Windows.Forms.Button btnHistory;
 		private System.Windows.Forms.Label label21;

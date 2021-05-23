@@ -14,14 +14,12 @@ using static StockOptionsHelper.Controllers.ThetaReturnCalculatorController;
 
 namespace StockOptionsHelper
 {
-	public partial class ThetaReturnCalculator : Form
-	{
+	public partial class ThetaReturnCalculator : Form {
 		private DataHelper DH;
 		private FormController formController = new FormController();
 		private ThetaReturnCalculatorController calculator = new ThetaReturnCalculatorController();
-		
-		public ThetaReturnCalculator()
-		{
+
+		public ThetaReturnCalculator() {
 			DH = DataHelper.Instance;
 			InitializeComponent();
 			SetupRows(1, 15); //The minimum and maximum tabindex for the columns to the row!
@@ -32,7 +30,7 @@ namespace StockOptionsHelper
 		private static readonly string SHARE_PRICE_PREFIX = "txtSharePrice";
 		private static readonly string CSP_PREFIX = "btnCSPToggle";
 		private static readonly string CC_PREFIX = "btnCCToggle";
-		
+
 		private static readonly string EXP_DATE_PREFIX = "cmboExpDate";
 		private static readonly string STRIKE_PRICE_PREFIX = "txtStrike";
 		private static readonly string CONTRACT_QUANTITY_PREFIX = "txtQuantity";
@@ -62,7 +60,7 @@ namespace StockOptionsHelper
 			//2. Assign the minimum and maximum tabstop values for the controls that will be duplicated, also get the initial max count of controls.
 			//3. Loop through all controls on the form (up to the initial max count), and if the control's tabstop value is within min/max, then duplicate it!
 			int numberRows;
-			
+
 			try {
 				numberRows = int.Parse(txtRows.Text);
 			} catch (Exception e) {
@@ -101,7 +99,7 @@ namespace StockOptionsHelper
 			}
 			if (nSuffix == SOURCE_ROW_NUMBER) {
 				Control newControl = ControlFactory.CloneCtrl(control);
-				newControl.Location = new Point(newControl.Location.X, newControl.Location.Y + (newControl.Height + RowSpace)*rowNum);
+				newControl.Location = new Point(newControl.Location.X, newControl.Location.Y + (newControl.Height + RowSpace) * rowNum);
 
 				if (control.Name.StartsWith(CSP_PREFIX)) {
 					CheckBox cspButton = (CheckBox)newControl;
@@ -109,20 +107,26 @@ namespace StockOptionsHelper
 				} else if (control.Name.StartsWith(CC_PREFIX)) {
 					CheckBox ccButton = (CheckBox)newControl;
 					ccButton.Click += new System.EventHandler(this.btnCCToggle_Click_Handler);
-				} else if (control.Name.StartsWith(SHARE_PRICE_PREFIX) || control.Name.StartsWith(STRIKE_PRICE_PREFIX) || control.Name.StartsWith(CONTRACT_QUANTITY_PREFIX)) {
+				} else if (control.Name.StartsWith(SHARE_PRICE_PREFIX) || control.Name.StartsWith(STRIKE_PRICE_PREFIX) || control.Name.StartsWith(CONTRACT_QUANTITY_PREFIX)
+					|| control.Name.StartsWith(CONTRACT_PRICE_PREFIX)) {
 					TextBox field = (TextBox)newControl;
 					field.TextChanged += new EventHandler(this.handleTextBoxChanged);
+					field.KeyPress += Field_KeyPress;
 				} else if (control.Name.StartsWith(EXP_DATE_PREFIX)) {
 					ComboBox box = (ComboBox)newControl;
 					box.TextChanged += new EventHandler(this.handleTextBoxChanged);
 				}
 
 
-				IncrementControlInfo(newControl, prefix, rowNum+1, columnCount);
+				IncrementControlInfo(newControl, prefix, rowNum + 1, columnCount);
 				this.Controls.Add(newControl);
 				newControl.Show();
 			}
-			
+
+		}
+
+		private void Field_KeyPress(object sender, KeyPressEventArgs e) {
+			handleTextBoxChanged(sender, e);
 		}
 
 		private void IncrementControlInfo(Control control, String prefix, int rowNum, int columnCount) {
@@ -135,7 +139,7 @@ namespace StockOptionsHelper
 			//This will Save the record as a history, if there
 		}
 		private void btnCSPToggle_Click_Handler(object sender, EventArgs e) {
-			handleTogglesClicked( ((CheckBox) sender).Name, CSP_PREFIX, CC_PREFIX);
+			handleTogglesClicked(((CheckBox)sender).Name, CSP_PREFIX, CC_PREFIX);
 			//Also, this should trigger handleTextBoxChanged, because that will run the calculator if all textboxes are ready.
 			handleTextBoxChanged(sender, e);
 		}
@@ -147,7 +151,7 @@ namespace StockOptionsHelper
 
 		private void handleTogglesClicked(string clickedName, string clickedPrefix, string otherPrefix) {
 			string suffix = clickedName.Substring(clickedPrefix.Length);
-			CheckBox btnClicked = (CheckBox) this.Controls.Find(clickedPrefix + suffix, true).FirstOrDefault();
+			CheckBox btnClicked = (CheckBox)this.Controls.Find(clickedPrefix + suffix, true).FirstOrDefault();
 			CheckBox btnOther = (CheckBox)this.Controls.Find(otherPrefix + suffix, true).FirstOrDefault();
 
 			if (btnClicked.Checked == true) {
@@ -161,28 +165,31 @@ namespace StockOptionsHelper
 			Control source = (Control)sender;
 			//If all of the fields needed to do the calculation are filled out, then do it and display the results!
 			String suffix = determineSuffix(source.Name);
+			decimal investedAmount = 0; decimal expectedProfit = 0; decimal expectedProfitPerc = 0; decimal expectedProfitAnnualPerc = 0;
+			decimal expectedMaxProfit = 0; decimal expectedMaxProfitPerc = 0; decimal expectedMaxProfitAnnualPerc = 0;
 			if (isRowReady(suffix)) {
-
-				decimal investedAmount; decimal expectedProfit; decimal expectedProfitPerc; decimal expectedProfitAnnualPerc;
-				decimal expectedMaxProfit; decimal expectedMaxProfitPerc; decimal expectedMaxProfitAnnualPerc;
 				switch (getCalculationType(suffix)) {
 					case ReturnCalculationType.CoveredCall:
 						calculator.CalculateCoveredCallReturn(getFieldValueDateTime(EXP_DATE_PREFIX, suffix), getFieldValueDecimal(SHARE_PRICE_PREFIX, suffix),
-							getFieldValueDecimal(STRIKE_PRICE_PREFIX, suffix), getFieldValueInt(CONTRACT_QUANTITY_PREFIX, suffix),
-							getFieldValueInt(CONTRACT_PRICE_PREFIX, suffix), out investedAmount, out expectedProfit, out expectedProfitPerc, out expectedProfitAnnualPerc,
+							getFieldValueDecimal(STRIKE_PRICE_PREFIX, suffix), getFieldValueDecimal(CONTRACT_QUANTITY_PREFIX, suffix),
+							getFieldValueDecimal(CONTRACT_PRICE_PREFIX, suffix), out investedAmount, out expectedProfit, out expectedProfitPerc, out expectedProfitAnnualPerc,
 							out expectedMaxProfit, out expectedMaxProfitPerc, out expectedMaxProfitAnnualPerc);
 						break;
 					case ReturnCalculationType.CashSecuredPut:
 						calculator.CalcualteCashSecuredPutReturn(getFieldValueDateTime(EXP_DATE_PREFIX, suffix), getFieldValueDecimal(SHARE_PRICE_PREFIX, suffix),
-							getFieldValueDecimal(STRIKE_PRICE_PREFIX, suffix), getFieldValueInt(CONTRACT_QUANTITY_PREFIX, suffix),
-							getFieldValueInt(CONTRACT_PRICE_PREFIX, suffix), out investedAmount, out expectedProfit, out expectedProfitPerc, out expectedProfitAnnualPerc,
+							getFieldValueDecimal(STRIKE_PRICE_PREFIX, suffix), getFieldValueDecimal(CONTRACT_QUANTITY_PREFIX, suffix),
+							getFieldValueDecimal(CONTRACT_PRICE_PREFIX, suffix), out investedAmount, out expectedProfit, out expectedProfitPerc, out expectedProfitAnnualPerc,
 							out expectedMaxProfit, out expectedMaxProfitPerc, out expectedMaxProfitAnnualPerc);
 						break;
 				}
-
-
-
 			}
+			setFieldValue(investedAmount, INVESTED_AMOUNT_PREFIX, suffix, true);
+			setFieldValue(expectedProfit, EXPECTED_PROFIT_AMT_PREFIX, suffix, true);
+			setFieldValue(expectedProfitPerc, EXPECTED_PROFIT_PERCENT_PREFIX, suffix, true, 2, true);
+			setFieldValue(expectedProfitAnnualPerc, EXPECTED_PROFIT_PERCENT_APR_PREFIX, suffix, true, 2, true);
+			setFieldValue(expectedMaxProfit, MAX_PROFIT_AMT_PREFIX, suffix, true);
+			setFieldValue(expectedMaxProfitPerc, MAX_PROFIT_PERCENT_PREFIX, suffix, true, 2, true);
+			setFieldValue(expectedMaxProfitAnnualPerc, MAX_PROFIT_PERCENT_APR_PREFIX, suffix, true, 2, true);
 		}
 
 		/// <summary>
@@ -192,13 +199,33 @@ namespace StockOptionsHelper
 		/// <param name="anyFieldName"></param>
 		/// <returns></returns>
 		private bool isRowReady(String suffix) {
-			if (isFieldReady(SHARE_PRICE_PREFIX, suffix) && isFieldReady(EXP_DATE_PREFIX, suffix) && isFieldReady(STRIKE_PRICE_PREFIX, suffix) 
-				&& isFieldReady(CONTRACT_QUANTITY_PREFIX, suffix) && areToggleButtonsReady(CSP_PREFIX, CC_PREFIX, suffix)) {
+			if (isDecimalFieldReady(SHARE_PRICE_PREFIX, suffix) && isDateFieldReady(EXP_DATE_PREFIX, suffix) && isDecimalFieldReady(STRIKE_PRICE_PREFIX, suffix)
+				&& isDecimalFieldReady(CONTRACT_QUANTITY_PREFIX, suffix) && areToggleButtonsReady(CSP_PREFIX, CC_PREFIX, suffix)
+				&& isDecimalFieldReady(CONTRACT_PRICE_PREFIX, suffix)) {
 				return true;
 			}
 			return false;
 		}
 
+		private bool isDateFieldReady(String name, String suffix = "") {
+			String value = getFieldValue(name, suffix);
+			try {
+				DateTime dt = DateTime.Parse(value);
+				return true;
+			} catch (Exception) {
+				return false;
+			}
+		}
+
+		private bool isDecimalFieldReady(String name, String suffix = "") {
+			String value = getFieldValue(name, suffix);
+			try {
+				Decimal parsedValue = Decimal.Parse(value);
+				return true;
+			} catch (Exception) {
+				return false;
+			}
+		}
 		private bool isFieldReady(String name, String suffix = "") {
 			//Todo: Could do better validation checks on the fields, but for now we'll just make sure they are valued.
 			String value = getFieldValue(name, suffix);
@@ -234,7 +261,17 @@ namespace StockOptionsHelper
 			return this.Controls.Find(name + suffix, true).FirstOrDefault();
 		}
 
-		private void setFieldValue
+		private void setFieldValue(Decimal value, String name, String suffix = "", bool isZeroBlank = false, int maxDecimals = 2, bool isPercent = false ) {
+			Control ctrl = this.Controls.Find(name + suffix, true).FirstOrDefault();
+			if (isZeroBlank && "0".Equals(value))
+				ctrl.Text = "";
+			else {
+				if (isPercent)
+					value = value * 100;
+				value = Math.Round(value, 2);
+				ctrl.Text = value.ToString();
+			}
+		}
 		private ReturnCalculationType getCalculationType(String suffix) {
 			CheckBox cspButton = (CheckBox) this.Controls.Find(CSP_PREFIX + suffix, true).FirstOrDefault();
 			CheckBox ccButton = (CheckBox)this.Controls.Find(CC_PREFIX + suffix, true).FirstOrDefault();
@@ -273,8 +310,7 @@ namespace StockOptionsHelper
 				--pos;
 			}
 			prefix = name.Substring(0, pos);
-			suffix = name.Substring(pos - 1);
+			suffix = name.Substring(pos);
 		}
-
 	}
 }
